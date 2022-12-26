@@ -33,7 +33,6 @@ public class UnifiedPlatform {
         this.userNif = nif;
     }
 
-
     //Mètodes que s'han de aplicar
     public void selectJusMin () {
 
