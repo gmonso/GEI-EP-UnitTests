@@ -1,7 +1,7 @@
 package citizenmanagementplatform;
 
 import services.*;
-
+import publicadministration.*;
 public class UnifiedPlatform {
     public CertificationAuthority cerAuth;
     public CAS CAS;
