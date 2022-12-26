@@ -4,4 +4,4 @@
 ### 2- Apartat 5
 - Començat a fer, falta seguir
 ### 3- Apartat 4
--El començare
+- El començare
