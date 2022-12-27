@@ -1,4 +1,5 @@
 package TestData;
+
 import org.junit.Test;
 
 public class TestPassword {
