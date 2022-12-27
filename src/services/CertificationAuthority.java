@@ -1,10 +1,11 @@
 package services;
-import exceptions.*;
-
-import java.util.Date;
 
 import data.Nif;
 import data.SmallCode;
+import exceptions.AnyMobileRegisteredException;
+import exceptions.IncorrectValDateException;
+import exceptions.NifNotRegisteredException;
+import exceptions.NotValidPINException;
 
 import java.net.ConnectException;
 import java.util.Date;

@@ -1,7 +1,7 @@
 package exceptions;
 
-public class DigitalSignatureException extends Exception{
-    public DigitalSignatureException(){
+public class DigitalSignatureException extends Exception {
+    public DigitalSignatureException() {
         super();
     }
 }

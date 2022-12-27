@@ -1,5 +1,7 @@
 package TestData;
+
 import org.junit.Test;
+
 public class TestGoal {
     @Test
     public void testGoal() {
