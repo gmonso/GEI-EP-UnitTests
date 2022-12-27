@@ -1,7 +1,7 @@
 package exceptions;
 
-public class AnyMobileRegisteredException extends Exception{
-    public AnyMobileRegisteredException(){
+public class AnyMobileRegisteredException extends Exception {
+    public AnyMobileRegisteredException() {
         super();
     }
 }

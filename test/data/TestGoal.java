@@ -1,5 +1,8 @@
-package TestData;
-import org.junit.Test;
+package data;
+
+
+import org.junit.jupiter.api.Test;
+
 public class TestGoal {
     @Test
     public void testGoal() {

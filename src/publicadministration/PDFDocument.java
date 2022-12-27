@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Date;
 
@@ -65,7 +64,7 @@ public class PDFDocument {
     public void openDoc(DocPath path) throws IOException {
         if (path == null) throw new IOException("The path is null");
         try {
-            File file = new File (path.toString());
+            File file = new File(path.toString());
             Desktop.getDesktop().open(file);
         } catch (IOException ex) {
             throw new IOException("The file cannot be opened");
