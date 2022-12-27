@@ -1,4 +1,7 @@
 package services;
+import exceptions.*;
+
+import java.util.Date;
 
 public interface CertificationAuthority {// External service that represents the different trusted certification entities
     boolean sendPIN (Nif nif, Date date) throws NifNotRegisteredException,

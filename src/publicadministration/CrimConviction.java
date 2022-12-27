@@ -3,9 +3,9 @@ package publicadministration;
 import java.util.Date;
 
 public class CrimConviction { // Represents a criminal conviction registered
-    private Date commitDate;
-    private String offense;
-    private String sentence;
+    private final Date commitDate;
+    private final String offense;
+    private final String sentence;
 
     //Initialize attributes
     public CrimConviction (Date commit, String off, String sentc){
@@ -23,6 +23,6 @@ public class CrimConviction { // Represents a criminal conviction registered
         return this.sentence;
     }
     public String toString () {
-
+        return ("Criminal Conv information - Date:" + this.commitDate + "Offense:" + this.offense + "Sentence:" + this.sentence);
     } // converts to String
 }

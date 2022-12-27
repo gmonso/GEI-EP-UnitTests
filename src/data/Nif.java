@@ -1,6 +1,6 @@
 package data;
 
-import Exceptions.*;
+import exceptions.*;
 final public class Nif {
     private final String nif;
     public Nif (String code) throws NullArgumentException, WrongFormatException {

@@ -34,7 +34,7 @@ public class CrimConvictionsColl { // Represents the total criminal convictions 
     }
     // Gets a specific criminal conviction by date
     public String toString () {
-
+        return("He has: " + this.numConvs + "Criminal convictions" + "which are" + this.crimConvs);
     } // Converts to String
 }
 
