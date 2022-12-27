@@ -1,7 +1,6 @@
 package publicadministration;
 
 
-import Exceptions.NullArgumentException;
 import data.Nif;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class CitizenTest {
     @BeforeEach
-    void init(){
+    void init() {
 
     }
 
