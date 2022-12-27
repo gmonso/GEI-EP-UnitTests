@@ -1,6 +1,6 @@
 package publicadministration;
 
-import data.Nif;
+import data.*;
 
 public class Citizen {
     // Represents all the information required for a citizen

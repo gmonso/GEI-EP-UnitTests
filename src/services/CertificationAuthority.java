@@ -1,6 +1,6 @@
 package services;
 import exceptions.*;
-
+import data.*;
 import java.util.Date;
 
 public interface CertificationAuthority {// External service that represents the different trusted certification entities
