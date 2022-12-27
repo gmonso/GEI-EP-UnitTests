@@ -1,7 +1,12 @@
 package citizenmanagementplatform;
 
-import services.*;
+import data.Nif;
 import publicadministration.*;
+import services.CAS;
+import services.CertificationAuthority;
+import services.GPD;
+import services.JusticeMinistry;
+
 public class UnifiedPlatform {
     public CertificationAuthority cerAuth;
     public CAS CAS;
@@ -20,62 +25,77 @@ public class UnifiedPlatform {
     public void setJustMin(JusticeMinistry min) { //Select ministeri de justicia
         this.justMin = min;
     }
-    public void setCAS(CAS cas){
+
+    public void setCAS(CAS cas) {
         this.CAS = cas;
     }
+
     public void setGPD(GPD gpd) {
         this.GPD = gpd;
     }
+
     public void setCertAuth(CertificationAuthority auth) {
         this.cerAuth = auth;
     }
-    public void setNif(Nif nif){
+
+    public void setNif(Nif nif) {
         this.userNif = nif;
     }
 
     //Mètodes que s'han de aplicar
-    public void selectJusMin () {
-
-    }
-    public void selectProcedures () {
-
-    }
-    public void selectCriminalReportCertf () {
-
-    }
-    public void selectAuthMethod (byte opc) {
-
-    }
-    public void enterNIFandPINobt (Nif nif, Date valDate) {
-
-    }
-    public void enterPIN (SmallCode pin) {
-
-    }
-    private void enterForm (Citizen citz, Goal goal) {
+    public void selectJusMin() {
 
     }
 
-    private void realizePayment () {
-
-    }
-    private void enterCardData (CreditCard cardD) {
+    public void selectProcedures() {
 
     }
 
-    private void obtainCertificate () {
+    public void selectCriminalReportCertf() {
 
     }
-    private void printDocument () {
+
+    public void selectAuthMethod(byte opc) {
 
     }
-    private void registerPayment () {
+
+    public void enterNIFandPINobt(Nif nif, Date valDate) {
 
     }
-    private void openDocument (DocPath path) {
+
+    public void enterPIN(SmallCode pin) {
 
     }
-    private void printDocument (DocPath path) {
+
+    private void enterForm(Citizen citz, Goal goal) {
+
+    }
+
+    private void realizePayment() {
+
+    }
+
+    private void enterCardData(CreditCard cardD) {
+
+    }
+
+    private void obtainCertificate() {
+
+    }
+
+    private void printDocument() {
+
+    }
+
+    private void registerPayment() {
+
+    }
+
+    private void openDocument(DocPath path) {
+
+    }
+
+    private void printDocument(DocPath path) {
 
     }
 
