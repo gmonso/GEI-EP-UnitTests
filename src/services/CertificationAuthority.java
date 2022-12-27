@@ -1,4 +1,7 @@
 package services;
+import exceptions.*;
+
+import java.util.Date;
 
 import data.Nif;
 import data.SmallCode;
