@@ -10,14 +10,14 @@ public class CardPayment {
     private final String reference; // The code of the operation
     private final Nif nif; // The nif of the user
     private final Date date; // The date of the operation
-    private final BigDecimal import_; // The import of the payment
+    private final BigDecimal bdImport; // The import of the payment
 
 
-    public CardPayment(String reference, Nif nif, Date date, BigDecimal import_) {
+    public CardPayment(String reference, Nif nif, Date date, BigDecimal bdimport) {
         this.reference = reference;
         this.nif = nif;
         this.date = date;
-        this.import_ = import_;
+        this.bdImport = bdimport;
     }
 
 
@@ -34,7 +34,7 @@ public class CardPayment {
     }
 
     public BigDecimal getImport() {
-        return import_;
+        return bdImport;
     }
 
 
@@ -44,7 +44,7 @@ public class CardPayment {
                 "reference='" + reference + '\'' +
                 ", nif=" + nif +
                 ", date=" + date +
-                ", import_=" + import_ +
+                ", import =" + bdImport +
                 '}';
     }
 }

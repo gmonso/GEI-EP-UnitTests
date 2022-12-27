@@ -56,11 +56,16 @@ public class CitizenTest {
     }
 
     @Test
-    void testNullNifConstructor() {
+    void testNullConstructor() {
         try {
-            Citizen c = new Citizen(null, "name", "address", "mobileNumb");
+            Citizen c = new Citizen(null, null, null, null);
         } catch (Exception ignored) {
             fail();
         }
+    }
+
+    @Test
+    public void testToString() {
+        assertEquals(true, citizen.toString() instanceof String);
     }
 }
