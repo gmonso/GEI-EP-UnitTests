@@ -1,7 +1,7 @@
 package data;
 
-import Exceptions.NullArgumentException;
-import Exceptions.WrongFormatException;
+import exceptions.NullArgumentException;
+import exceptions.WrongFormatException;
 
 final public class Nif {
     private final String nif;

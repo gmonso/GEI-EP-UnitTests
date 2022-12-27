@@ -1,5 +1,11 @@
 package services;
 
+import data.Nif;
+import data.SmallCode;
+
+import java.net.ConnectException;
+import java.util.Date;
+
 public interface CertificationAuthority {// External service that represents the different trusted certification entities
 
     boolean sendPIN(Nif nif, Date date) throws NifNotRegisteredException,

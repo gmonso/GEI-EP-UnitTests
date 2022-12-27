@@ -40,8 +40,13 @@ public class CrimConvictionsColl { // Represents the total criminal convictions 
     }
 
     // Gets a specific criminal conviction by date
-    public String toString() {
 
-    } // Converts to String
+    @Override
+    public String toString() {
+        return "CrimConvictionsColl{" +
+                "crimConvs=" + crimConvs +
+                ", numConvs=" + numConvs +
+                '}';
+    }
 }
 

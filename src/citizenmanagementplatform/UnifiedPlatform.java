@@ -1,11 +1,16 @@
 package citizenmanagementplatform;
 
+import data.DocPath;
+import data.Goal;
 import data.Nif;
+import data.SmallCode;
 import publicadministration.*;
 import services.CAS;
 import services.CertificationAuthority;
 import services.GPD;
 import services.JusticeMinistry;
+
+import java.util.Date;
 
 public class UnifiedPlatform {
     public CertificationAuthority cerAuth;

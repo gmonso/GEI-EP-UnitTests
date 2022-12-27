@@ -26,7 +26,12 @@ public class CrimConviction { // Represents a criminal conviction registered
         return this.sentence;
     }
 
+    @Override
     public String toString() {
-
-    } // converts to String
+        return "CrimConviction{" +
+                "commitDate=" + commitDate +
+                ", offense='" + offense + '\'' +
+                ", sentence='" + sentence + '\'' +
+                '}';
+    }
 }
