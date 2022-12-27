@@ -2,45 +2,65 @@ package publicadministration;
 
 
 import data.Nif;
+import exceptions.NullArgumentException;
+import exceptions.WrongFormatException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class CitizenTest {
+    private Citizen citizen;
+    private Nif nif;
+    private String name;
+    private String address;
+    private String mobileNumb;
+
     @BeforeEach
-    void init() {
+    void init() throws NullArgumentException, WrongFormatException {
+        nif = new Nif("12345678Z");
+        name = "John Doe";
+        address = "123 Main Street";
+        mobileNumb = "123-456-7890";
+        citizen = new Citizen(nif, name, address, mobileNumb);
 
     }
 
     @Test
-    void NullNifConstructorCitizenTest() {
+    public void testConstructor() throws NullArgumentException, WrongFormatException {
+        assertEquals(nif, citizen.getNif());
+        assertEquals(name, citizen.getName());
+        assertEquals(address, citizen.getAddress());
+        assertEquals(mobileNumb, citizen.getMobileNumb());
+    }
+
+    @Test
+    public void testGetNif() throws NullArgumentException, WrongFormatException {
+        assertEquals(nif, citizen.getNif());
+    }
+
+    @Test
+    public void testGetName() throws NullArgumentException, WrongFormatException {
+        assertEquals(name, citizen.getName());
+    }
+
+    @Test
+    public void testGetAddress() throws NullArgumentException, WrongFormatException {
+        assertEquals(address, citizen.getAddress());
+    }
+
+    @Test
+    public void testGetMobileNumb() throws NullArgumentException, WrongFormatException {
+        assertEquals(mobileNumb, citizen.getMobileNumb());
+    }
+
+    @Test
+    void testNullNifConstructor() {
         try {
             Citizen c = new Citizen(null, "name", "address", "mobileNumb");
         } catch (Exception ignored) {
             fail();
         }
     }
-
-    @Test
-    void ValidConstructorCitizenTest() {
-        try {
-            Citizen c = new Citizen(new Nif("23242526J"), "name", "address", "mobileNumb");
-        } catch (Exception ignored) {
-            fail();
-
-        }
-    }
-
-/*    @Test
-    void addLine_NullArgumentTest() throws NullArgumentException, WrongFormatException, IncorrectTakingGuidelinesException {
-        MedicalPrescription medp = new MedicalPrescription(3, new Date(), new Date(),
-                new HealthCardID("BBBBBBBBAR123456789123456789"), new DigitalSignature(new byte[10]), new HashMap<>());
-        try {
-            medp.addLine(null, valid_line);
-            fail();
-        } catch (NullArgumentException ignored) {
-
-        }
-    }*/
 }

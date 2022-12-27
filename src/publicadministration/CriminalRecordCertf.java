@@ -1,8 +1,12 @@
 package publicadministration;
 
 import data.DigitalSignature;
+import data.DocPath;
 import data.Goal;
 import data.Nif;
+
+import java.io.File;
+import java.util.Date;
 
 public class CriminalRecordCertf extends PDFDocument { // Represents the Criminal Record Certificate
 
@@ -12,7 +16,8 @@ public class CriminalRecordCertf extends PDFDocument { // Represents the Crimina
     private final DigitalSignature digSign;
     private final CrimConvictionsColl crimConvs;
 
-    public CriminalRecordCertf(Nif nif, String name, Goal goal, DigitalSignature digSign, CrimConvictionsColl crimConvs) {
+    public CriminalRecordCertf(Date creatDate, DocPath path, File file, Nif nif, String name, Goal goal, DigitalSignature digSign, CrimConvictionsColl crimConvs) {
+        super(creatDate, path, file);
         this.nif = nif;
         this.name = name;
         this.goal = goal;
