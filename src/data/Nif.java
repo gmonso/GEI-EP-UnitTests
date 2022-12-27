@@ -1,9 +1,22 @@
 package data;
 
+import Exceptions.*;
 final public class Nif {
     private final String nif;
-    public Nif (String code) { this.nif = code; }
+    public Nif (String code) throws NullArgumentException, WrongFormatException {
+        if (code == null) throw new NullArgumentException("Nif is null");
+        if (!CorrectFormat(code)) throw new WrongFormatException("Nif is not in the correct format");
+        this.nif = code;
+    }
     public String getNif () { return nif; }
+    public boolean CorrectFormat (String code) {
+        if (code.length() != 9) return false;
+        for (int i = 0; i < 8; i++) {
+            if (!Character.isDigit(code.charAt(i))) return false;
+        }
+        if (!Character.isLetter(code.charAt(8))) return false;
+        return true;
+    }
     @Override
     public boolean equals (Object o) {
         if (this == o) return true;
