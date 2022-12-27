@@ -1,8 +1,10 @@
 package data;
 
-import Exceptions.*;
+
+import exceptions.*;
 
 import java.util.Objects;
+
 
 public class Password {
     private final String password;
