@@ -2,6 +2,7 @@ package services;
 
 
 import data.Goal;
+import exceptions.IncorrectVerificationException;
 import publicadministration.Citizen;
 
 import java.net.ConnectException;
