@@ -1,6 +1,8 @@
-import org.junit.jupiter.api.Test;
+package TestData;
 
-public class dataTest {
+import org.junit.Test;
+
+public class TestNif {
     @Test
     public void testNif() {
         throw new RuntimeException("Test not implemented");
