@@ -2,21 +2,41 @@ package data;
 import exceptions.NullArgumentException;
 import exceptions.WrongFormatException;
 
-import java.nio.file.Paths;
+import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class DocPath {
     private final String path;
 
     public DocPath(String code) throws NullArgumentException, WrongFormatException {
         if (code == null) throw new NullArgumentException("Path is null");
-        if (!CorrectFormat(code)) throw new WrongFormatException("Path is not in the correct format");
+        if (!CorrectPath(code)) throw new WrongFormatException("Path is not in the correct format");
         this.path = code;
     }
+
     public String getPath() {
         return path;
     }
-    public boolean CorrectFormat(String code) {
-        if (!Paths.get(code).toFile().exists()) return false;
-        return true;
+
+    public boolean CorrectPath(String code) {
+        return Pattern.matches("^[a-zA-Z]:\\\\(?:[^\\\\/:*?\"<>|]+\\\\)*[^\\\\/:*?\"<>|]*$", code);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DocPath docPath = (DocPath) o;
+        return Objects.equals(path, docPath.path);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(path);
+    }
+
+    @Override
+    public String toString() {
+        return "DocPath{" + "path='" + path + '\'' + '}';
     }
 }
