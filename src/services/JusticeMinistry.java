@@ -7,7 +7,10 @@ import publicadministration.CriminalRecordCertf;
 
 import java.net.ConnectException;
 
+import exceptions.*;
+import publicadministration.*;
+import data.*;
 public interface JusticeMinistry { // External service for the Justice Ministry
-    CriminalRecordCertf6 getCriminalRecordCertf (Citizen persD, Goal g)
+    CriminalRecordCertf getCriminalRecordCertf (Citizen pers, Goal g)
             throws DigitalSignatureException,ConnectException;
 }

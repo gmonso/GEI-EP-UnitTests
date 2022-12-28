@@ -2,6 +2,10 @@ package citizenmanagementplatform;
 
 import services.*;
 import publicadministration.*;
+import data.*;
+
+import java.util.Date;
+
 public class UnifiedPlatform {
     public CertificationAuthority cerAuth;
     public CAS CAS;

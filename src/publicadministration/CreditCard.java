@@ -35,7 +35,12 @@ public class CreditCard {
     public SmallCode getSvc() {
         return svc;
     }
-
+    public boolean CorrectForm(){
+        if(this.nif.getNif().length() <= 0 || this.cardNumb.length() <= 0 || this.expirDate == null || this.svc == null){
+            return false;
+        }
+        return true;
+    }
     @Override
     public String toString() {
         return "CreditCard{" +
