@@ -1,4 +1,5 @@
 package data;
+
 import exceptions.NullArgumentException;
 import exceptions.WrongFormatException;
 import exceptions.GoalTypeException;
@@ -7,20 +8,25 @@ import java.util.Objects;
 
 public class Goal {
     private final String goal;
+    private final GoalType type;
 
 
-    public Goal(String code) throws NullArgumentException, WrongFormatException, GoalTypeException {
+    public Goal(String code, GoalType type) throws NullArgumentException, WrongFormatException, GoalTypeException {
         if (code == null) throw new NullArgumentException("Goal is null");
         if (!CorrectFormat(code)) throw new WrongFormatException("Goal is not in the correct format");
-        GoalType[] GoalType= new GoalType[]{Goal.GoalType.UNEMPLOYED, Goal.GoalType.RETIRED , Goal.GoalType.STUDENT, Goal.GoalType.WORKER, Goal.GoalType.OTHER};
-        for (Goal.GoalType goalType : GoalType) {
-             if (!CorrectType(goalType)) throw new GoalTypeException("Goal is not of the correct type");
-        }
+        if (!CorrectType(type)) throw new GoalTypeException("Goal is not of the correct type");
         this.goal = code;
+        this.type = type;
     }
+
     public String getGoal() {
         return goal;
     }
+
+    public GoalType getType() {
+        return type;
+    }
+
     public boolean CorrectFormat(String code) {
         if (code.length() < 3) return false;
         if (code.length() > 20) return false;
@@ -32,6 +38,7 @@ public class Goal {
         }
         return count >= 2;
     }
+
     public boolean CorrectType(GoalType type) {
         if (type == GoalType.OTHER) return true;
         if (type == GoalType.WORKER) return true;
@@ -46,17 +53,17 @@ public class Goal {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Goal goal1 = (Goal) o;
-        return Objects.equals(goal, goal1.goal);
+        return Objects.equals(goal, goal1.goal) && type == goal1.type;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(goal);
+        return Objects.hash(goal, type);
     }
 
     @Override
     public String toString() {
-        return "Goal{" +"goal='" + goal + '\'' +'}';
+        return "Goal{" + "goal='" + goal + '\'' + ", type=" + type + '}';
     }
 
     enum GoalType {

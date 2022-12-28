@@ -1,4 +1,5 @@
 package data;
+
 import exceptions.NullArgumentException;
 import exceptions.WrongFormatException;
 
@@ -7,11 +8,13 @@ import java.util.Arrays;
 
 public class DigitalSignature {
     private final byte[] signature;
+
     public DigitalSignature(byte[] code) throws NullArgumentException, WrongFormatException {
         if (code == null) throw new NullArgumentException("DigitalSignature is null");
         if (!CorrectFormat(code)) throw new WrongFormatException("DigitalSignature is not in the correct format");
         this.signature = code;
     }
+
     public byte[] getSignature() {
         return signature;
     }

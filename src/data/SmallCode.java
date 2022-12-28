@@ -13,6 +13,7 @@ public class SmallCode {
         if (!CorrectFormat(code)) throw new WrongFormatException("SmallCode is not in the correct format");
         this.code = code;
     }
+
     public boolean CorrectFormat(String code) {
         if (code.length() == 3) return true;
         return false;
