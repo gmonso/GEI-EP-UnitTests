@@ -5,7 +5,6 @@ import publicadministration.*;
 import data.*;
 
 import java.util.Date;
-
 public class UnifiedPlatform {
     public CertificationAuthority cerAuth;
     public CAS CAS;
@@ -19,27 +18,11 @@ public class UnifiedPlatform {
     public CrimConvictionsColl CrimColl;
     public CriminalRecordCertf CrimCertf;
     public PDFDocument pdfD;
-
-    //v---- SETTERS OF ALL INVOLVED SERVICES AND ELEMENT----v
-    public void setJustMin(JusticeMinistry min) { //Select ministeri de justicia
-        this.justMin = min;
-    }
-    public void setCAS(CAS cas){
+    public UnifiedPlatform(JusticeMinistry jus, CAS cas, GPD police, CertificationAuthority cerAuth) {
+        this.justMin = jus;
         this.CAS = cas;
-    }
-    public void setGPD(GPD gpd) {
-        this.GPD = gpd;
-    }
-    public void setCertAuth(CertificationAuthority auth) {
-        this.cerAuth = auth;
-    }
-    public void setNif(Nif nif){
-        this.userNif = nif;
-    }
-
-    //Mètodes que s'han de aplicar
-    public void selectJusMin () {
-
+        this.GPD = police;
+        this.cerAuth = cerAuth;
     }
     public void selectProcedures () {
 
