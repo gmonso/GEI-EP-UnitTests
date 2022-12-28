@@ -16,6 +16,10 @@ public class TestNif {
     }
 
     @Test
+    public void ConstructorTest(){
+        assertEquals("12345678A", nif.getNif());
+    }
+    @Test
     public void correctNif() {
         try {
             new Nif("12345678J");
