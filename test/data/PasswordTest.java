@@ -1,10 +1,14 @@
 package data;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class PasswordTest {
-    @Test
-    public void testPassword() {
-        throw new RuntimeException("Test not implemented");
+
+    Password password;
+
+    @BeforeEach
+    public void init() {
+        password = new Password("12345678");
     }
 }
