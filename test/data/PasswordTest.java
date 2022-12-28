@@ -1,11 +1,10 @@
 package data;
 
-
 import org.junit.jupiter.api.Test;
 
-public class TestGoal {
+public class PasswordTest {
     @Test
-    public void testGoal() {
+    public void testPassword() {
         throw new RuntimeException("Test not implemented");
     }
 }

@@ -3,10 +3,9 @@ package data;
 
 import org.junit.jupiter.api.Test;
 
-public class TestDocPath {
-
+public class GoalTest {
     @Test
-    public void testDocPath() {
+    public void testGoal() {
         throw new RuntimeException("Test not implemented");
     }
 }

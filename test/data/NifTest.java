@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestNif {
+public class NifTest {
     Nif nif;
 
     @BeforeEach
@@ -16,9 +16,10 @@ public class TestNif {
     }
 
     @Test
-    public void ConstructorTest(){
+    public void ConstructorTest() {
         assertEquals("12345678A", nif.getNif());
     }
+
     @Test
     public void correctNif() {
         try {
@@ -38,8 +39,6 @@ public class TestNif {
         } catch (WrongFormatException ignored) {
             fail();
         }
-
-
     }
 
     @Test
@@ -49,7 +48,7 @@ public class TestNif {
         } catch (WrongFormatException ignored) {
             System.out.println(ignored.getMessage());
         } catch (NullArgumentException e) {
-            fail();
+            System.out.println(e.getMessage());
         }
     }
 }
