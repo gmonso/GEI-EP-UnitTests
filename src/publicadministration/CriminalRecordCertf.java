@@ -1,10 +1,17 @@
 package publicadministration;
 
 import data.DigitalSignature;
+import data.DocPath;
 import data.Goal;
 import data.Nif;
+import exceptions.GoalTypeException;
+import exceptions.NullArgumentException;
+import exceptions.WrongFormatException;
 
-public class CriminalRecordCertf { // Represents the Criminal Record Certificate
+import java.io.File;
+import java.util.Date;
+
+public class CriminalRecordCertf extends PDFDocument { // Represents the Criminal Record Certificate
 
     private final Nif nif;
     private final String name;
@@ -12,12 +19,13 @@ public class CriminalRecordCertf { // Represents the Criminal Record Certificate
     private final DigitalSignature digSign;
     private final CrimConvictionsColl crimConvs;
 
-    public CriminalRecordCertf(Nif nif, String name, Goal goal, DigitalSignature digSign, CrimConvictionsColl crimConvs) {
+    public CriminalRecordCertf (Nif nif, String name, Goal g, DigitalSignature ds, CrimConvictionsColl crmC) throws NullArgumentException, WrongFormatException, GoalTypeException {
+        super();
         this.nif = nif;
         this.name = name;
-        this.goal = goal;
-        this.digSign = digSign;
-        this.crimConvs = crimConvs;
+        this.goal = new Goal("123", Goal.GoalType.OTHER);
+        this.digSign = new DigitalSignature(new byte[4]);
+        this.crimConvs = new CrimConvictionsColl();
     }
 
     public Nif getNif() {
