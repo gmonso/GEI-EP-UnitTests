@@ -2,11 +2,12 @@ package data;
 
 import exceptions.NullArgumentException;
 import exceptions.WrongFormatException;
+import interfaces.CardNumberTest_Int;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CardNumberTest {
+public class CardNumberTest implements CardNumberTest_Int {
 
     @Test
     public void correctCardNumber() throws NullArgumentException, WrongFormatException {

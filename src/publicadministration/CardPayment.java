@@ -16,9 +16,9 @@ public class CardPayment {
 
 
     public CardPayment (String reference, Nif nif, Date date, BigDecimal imp) {
-        this.reference = this.generateReference(); // "1234567890";
+        this.reference = reference; // "1234567890";
         this.nif = nif;
-        this.date = new Date();
+        this.date = date;
         this.imp = imp;
     }
 
