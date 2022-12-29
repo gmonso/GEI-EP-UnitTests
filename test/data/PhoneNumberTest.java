@@ -11,26 +11,26 @@ public class PhoneNumberTest {
     @Test
     public void testPhoneNumber() throws NullArgumentException, WrongFormatException {
         PhoneNumber phoneNumber = new PhoneNumber("123456789");
-        assertEquals("123456789", phoneNumber.getNumber());
+        assertEquals("123456789", phoneNumber.getPhoneNumber());
     }
 
     @Test
     public void testPhoneNumberSetNumber() throws NullArgumentException, WrongFormatException {
         PhoneNumber phoneNumber = new PhoneNumber("123456789");
-        phoneNumber.setNumber("987654321");
-        assertEquals("987654321", phoneNumber.getNumber());
+        phoneNumber.setPhoneNumber("987654321");
+        assertEquals("987654321", phoneNumber.getPhoneNumber());
     }
 
     @Test
     public void testPhoneNumberNull() {
         Throwable exception = assertThrows(NullArgumentException.class, () -> new PhoneNumber(null));
-        assertEquals("Number is null", exception.getMessage());
+        assertEquals("Phone number is null", exception.getMessage());
     }
 
     @Test
     public void testPhoneNumberWrongFormat() {
         Throwable exception = assertThrows(WrongFormatException.class, () -> new PhoneNumber("12345678"));
-        assertEquals("Number is not in the correct format", exception.getMessage());
+        assertEquals("Phone number is not in the correct format", exception.getMessage());
     }
 
     @Test

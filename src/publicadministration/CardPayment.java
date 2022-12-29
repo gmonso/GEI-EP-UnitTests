@@ -15,7 +15,7 @@ public class CardPayment {
     private final BigDecimal imp; // The import of the payment
 
 
-    public CardPayment (Nif nif, BigDecimal imp) {
+    public CardPayment (String reference, Nif nif, Date date, BigDecimal imp) {
         this.reference = this.generateReference(); // "1234567890";
         this.nif = nif;
         this.date = new Date();
