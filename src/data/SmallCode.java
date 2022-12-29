@@ -15,8 +15,11 @@ public class SmallCode {
     }
 
     public boolean CorrectFormat(String code) {
-        if (code.length() == 3) return true;
-        return false;
+        return code.length() == 3;
+    }
+
+    public String getCode() {
+        return code;
     }
 
     @Override

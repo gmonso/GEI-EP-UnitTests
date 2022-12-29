@@ -2,53 +2,28 @@ package data;
 
 import exceptions.NullArgumentException;
 import exceptions.WrongFormatException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class NifTest {
-    Nif nif;
-
-    @BeforeEach
-    void init() throws NullArgumentException, WrongFormatException {
-        nif = new Nif("12345678A");
-    }
 
     @Test
-    public void ConstructorTest() {
+    public void correctNif() throws NullArgumentException, WrongFormatException {
+        Nif nif = new Nif("12345678A");
         assertEquals("12345678A", nif.getNif());
     }
 
     @Test
-    public void correctNif() {
-        try {
-            new Nif("12345678J");
-        } catch (NullArgumentException | WrongFormatException ignored) {
-            fail();
-        }
-        System.out.println("Correct Nif");
-    }
-
-    @Test
     public void nullNif() {
-        try {
-            new Nif(null);
-        } catch (NullArgumentException ignored) {
-            System.out.println(ignored.getMessage());
-        } catch (WrongFormatException ignored) {
-            fail();
-        }
+        Throwable exception = assertThrows(NullArgumentException.class, () -> new Nif(null));
+        assertEquals("Nif is null", exception.getMessage());
     }
 
     @Test
     public void badFormatNif() {
-        try {
-            new Nif("A2345D6J");
-        } catch (WrongFormatException ignored) {
-            System.out.println(ignored.getMessage());
-        } catch (NullArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        Throwable exception = assertThrows(WrongFormatException.class, () -> new Nif("123456L"));
+        assertEquals("Nif is not in the correct format", exception.getMessage());
     }
 }

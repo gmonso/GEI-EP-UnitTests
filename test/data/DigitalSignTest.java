@@ -2,46 +2,29 @@ package data;
 
 import exceptions.NullArgumentException;
 import exceptions.WrongFormatException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DigitalSignTest {
 
-    DigitalSignature ds;
-
-    @BeforeEach
-    public void init() throws NullArgumentException, WrongFormatException {
-        ds = new DigitalSignature(new byte[10]);
-    }
-
-    @Test
-    public void ConstructorTest() {
-        System.out.println(ds.getSignature());
-        assertEquals(10, ds.getSignature().length);
-    }
-
     @Test
     public void nullDigitalSign() {
-        try {
-            new DigitalSignature(null);
-        } catch (NullArgumentException ignored) {
-            System.out.println(ignored.getMessage());
-        } catch (WrongFormatException ignored) {
-            System.out.println(ignored.getMessage());
-        }
+        Throwable exception = assertThrows(NullArgumentException.class, () -> new DigitalSignature(null));
+        assertEquals("DigitalSignature is null", exception.getMessage());
     }
 
     @Test
     public void badFormatDigitalSign() {
-        try {
-            new DigitalSignature(new byte[0]);
-        } catch (WrongFormatException ignored) {
-            System.out.println(ignored.getMessage());
-        } catch (NullArgumentException ignored) {
-            fail();
-        }
+        Throwable exception = assertThrows(WrongFormatException.class, () -> new DigitalSignature(new byte[]{1,2})
+        );
+        assertEquals("DigitalSignature is not in the correct format", exception.getMessage());
+    }
+
+    @Test
+    public void correctFormat() throws NullArgumentException, WrongFormatException {
+        byte[] signature = new byte[]{1,2,3,4,5,6,7,8,9,4,3,6};
+        DigitalSignature digitalSignature = new DigitalSignature(signature);
+        assertEquals(signature, digitalSignature.getSignature());
     }
 }

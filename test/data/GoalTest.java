@@ -4,51 +4,30 @@ package data;
 import exceptions.GoalTypeException;
 import exceptions.NullArgumentException;
 import exceptions.WrongFormatException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GoalTest {
 
-    Goal G;
-
-    @BeforeEach
-    public void init() throws NullArgumentException, GoalTypeException, WrongFormatException {
-        G = new Goal("87946518645132", Goal.GoalType.WORKER);
+    @Test
+    public void NullGoal() {
+        Throwable exception;
+        exception = assertThrows(NullArgumentException.class, () -> new Goal(null, Goal.GoalType.OTHER));
+        assertEquals("Goal is null", exception.getMessage());
     }
 
     @Test
-    public void ConstructorTest() {
-        assertEquals("87946518645132", G.getGoal());
-        assertEquals(Goal.GoalType.WORKER, G.getType());
+    public void WrongFormatGoal() {
+        Throwable exception = assertThrows(WrongFormatException.class, () -> new Goal("123", Goal.GoalType.OTHER));
+        assertEquals("Goal is not in the correct format", exception.getMessage());
     }
 
     @Test
-    public void NullGoal(){
-        try {
-            new Goal(null, Goal.GoalType.STUDENT);
-        } catch (NullArgumentException n) {
-            System.out.println(n.getMessage());
-        } catch (WrongFormatException w){
-            System.out.println(w.getMessage());
-        } catch (GoalTypeException e) {
-            fail();
-        }
+    public void CorrectGoal() throws NullArgumentException, WrongFormatException, GoalTypeException {
+        Goal goal = new Goal("Narco", Goal.GoalType.STUDENT);
+        assertEquals("Narco", goal.getGoal());
+        assertEquals(Goal.GoalType.STUDENT, goal.getType());
+        assertNotEquals(Goal.GoalType.OTHER, goal.getType());
     }
-
-    /*@Test
-    public void WrongGoalType(){
-        try{
-            new Goal ("1235689", Goal.GoalType.STUDENT);
-        } catch (NullArgumentException n) {
-            fail();
-        } catch (WrongFormatException w){
-            fail();
-        } catch (GoalTypeException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-*/
 }

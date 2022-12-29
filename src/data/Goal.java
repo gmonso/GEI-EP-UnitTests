@@ -30,19 +30,16 @@ public class Goal {
     public boolean CorrectFormat(String code) {
         if (code.length() < 3) return false;
         if (code.length() > 20) return false;
-        int count = 0;
         for (int i = 0; i < code.length(); i++) {
-            if (Character.isDigit(code.charAt(i))) count++;
+            if (!Character.isLetter(code.charAt(i))) return false;
         }
-        return count >= 2;
+        return true;
     }
 
     public boolean CorrectType(GoalType type) {
-        if (type == GoalType.OTHER) return true;
-        if (type == GoalType.WORKER) return true;
-        if (type == GoalType.STUDENT) return true;
-        if (type == GoalType.UNEMPLOYED) return true;
-        if (type == GoalType.RETIRED) return true;
+    for (GoalType goalType : GoalType.values()) {
+        if (goalType.equals(type)) return true;
+    }
         return false;
     }
 
