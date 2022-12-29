@@ -1,8 +1,8 @@
 package data;
 
+import exceptions.GoalTypeException;
 import exceptions.NullArgumentException;
 import exceptions.WrongFormatException;
-import exceptions.GoalTypeException;
 
 import java.util.Objects;
 
@@ -14,7 +14,7 @@ public class Goal {
     public Goal(String code, GoalType type) throws NullArgumentException, WrongFormatException, GoalTypeException {
         if (code == null) throw new NullArgumentException("Goal is null");
         if (!CorrectFormat(code)) throw new WrongFormatException("Goal is not in the correct format");
-        if (!CorrectType(type)) throw new   GoalTypeException("Goal is not of the correct type");
+        if (!CorrectType(type)) throw new GoalTypeException("Goal is not of the correct type");
         this.goal = code;
         this.type = type;
     }
@@ -37,9 +37,9 @@ public class Goal {
     }
 
     public boolean CorrectType(GoalType type) {
-    for (GoalType goalType : GoalType.values()) {
-        if (goalType.equals(type)) return true;
-    }
+        for (GoalType goalType : GoalType.values()) {
+            if (goalType.equals(type)) return true;
+        }
         return false;
     }
 
