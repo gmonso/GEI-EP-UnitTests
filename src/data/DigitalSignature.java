@@ -21,8 +21,7 @@ public class DigitalSignature {
 
     public boolean CorrectFormat(byte[] code) {
         if (code.length < 3) return false;
-        if (code.length > 20) return false;
-        return true;
+        return code.length <= 20;
     }
 
     @Override
