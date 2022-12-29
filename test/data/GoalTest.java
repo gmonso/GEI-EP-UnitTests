@@ -30,4 +30,31 @@ public class GoalTest {
         assertEquals(Goal.GoalType.STUDENT, goal.getType());
         assertNotEquals(Goal.GoalType.OTHER, goal.getType());
     }
+
+    @Test
+    public void GoalEquals() throws NullArgumentException, WrongFormatException, GoalTypeException {
+        Goal goal = new Goal("Narco", Goal.GoalType.STUDENT);
+        assertTrue(goal.equals(goal));
+    }
+
+    @Test
+    public void GoalNotEquals() throws NullArgumentException, WrongFormatException, GoalTypeException {
+        Goal goal1 = new Goal("Narco", Goal.GoalType.STUDENT);
+        Goal goal2 = new Goal("Traficant", Goal.GoalType.STUDENT);
+        assertFalse(goal1.equals(goal2));
+    }
+
+    @Test
+    public void GoalNotEquals2() throws NullArgumentException, WrongFormatException, GoalTypeException {
+        Goal goal1 = new Goal("Narco", Goal.GoalType.STUDENT);
+        Goal goal2 = new Goal("Narco", Goal.GoalType.OTHER);
+        assertFalse(goal1.equals(goal2));
+    }
+
+    @Test
+    public void GoalEquals2() throws NullArgumentException, WrongFormatException, GoalTypeException {
+        Goal goal1 = new Goal("Narco", Goal.GoalType.STUDENT);
+        Goal goal2 = new Goal("Narco", Goal.GoalType.STUDENT);
+        assertTrue(goal1.equals(goal2));
+    }
 }

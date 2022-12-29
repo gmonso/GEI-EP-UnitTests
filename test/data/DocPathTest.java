@@ -4,8 +4,8 @@ package data;
 import exceptions.NullArgumentException;
 import exceptions.WrongFormatException;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class DocPathTest {
@@ -26,5 +26,26 @@ public class DocPathTest {
     public void goodDocPath() throws NullArgumentException, WrongFormatException {
         DocPath docPath = new DocPath("C:\\Users\\User\\Desktop\\test.txt");
         assertEquals("C:\\Users\\User\\Desktop\\test.txt", docPath.getPath());
+    }
+
+
+    @Test
+    public void DocPathEquals() throws NullArgumentException, WrongFormatException {
+        DocPath docPath = new DocPath("C:\\Users\\User\\Desktop\\test.txt");
+        assertTrue(docPath.equals(docPath));
+    }
+
+    @Test
+    public void DocPathNotEquals() throws NullArgumentException, WrongFormatException {
+        DocPath docPath1 = new DocPath("C:\\Users\\User\\Desktop\\test.txt");
+        DocPath docPath2 = new DocPath("C:\\Users\\User\\Desktop\\test2.txt");
+        assertFalse(docPath1.equals(docPath2));
+    }
+
+    @Test
+    public void DocPathEquals2() throws NullArgumentException, WrongFormatException {
+        DocPath docPath1 = new DocPath("C:\\Users\\User\\Desktop\\test.txt");
+        DocPath docPath2 = new DocPath("C:\\Users\\User\\Desktop\\test.txt");
+        assertTrue(docPath1.equals(docPath2));
     }
 }

@@ -4,8 +4,7 @@ import exceptions.NullArgumentException;
 import exceptions.WrongFormatException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PasswordTest {
 
@@ -25,5 +24,25 @@ public class PasswordTest {
     public void correctFormat() throws NullArgumentException, WrongFormatException {
         Password password = new Password("Hell0W0rld");
         assertEquals("Hell0W0rld", password.getPassword());
+    }
+
+    @Test
+    public void passwordEquals() throws NullArgumentException, WrongFormatException {
+        Password password = new Password("Hell0W0rld");
+        assertTrue(password.equals(password));
+    }
+
+    @Test
+    public void passwordNotEquals() throws NullArgumentException, WrongFormatException {
+        Password password1 = new Password("Hell0W0rld");
+        Password password2 = new Password("Hi345benu");
+        assertFalse(password1.equals(password2));
+    }
+
+    @Test
+    public void passwordEquals2() throws NullArgumentException, WrongFormatException {
+        Password password1 = new Password("Hell0W0rld");
+        Password password2 = new Password("Hell0W0rld");
+        assertTrue(password1.equals(password2));
     }
 }
