@@ -2,6 +2,7 @@ package publicadministration;
 
 
 import data.Nif;
+import data.PhoneNumber;
 import exceptions.NullArgumentException;
 import exceptions.WrongFormatException;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,16 +16,15 @@ public class CitizenTest {
     private Nif nif;
     private String name;
     private String address;
-    private String mobileNumb;
+    private PhoneNumber mobileNumb;
 
     @BeforeEach
     void init() throws NullArgumentException, WrongFormatException {
         nif = new Nif("12345678Z");
         name = "John Doe";
         address = "123 Main Street";
-        mobileNumb = "123-456-7890";
+        mobileNumb = PhoneNumber.getInstance();
         citizen = new Citizen(nif, name, address, mobileNumb);
-
     }
 
     @Test

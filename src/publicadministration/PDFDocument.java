@@ -20,7 +20,7 @@ public class PDFDocument {
 
     public PDFDocument() throws NullArgumentException, WrongFormatException {
         this.creatDate = new Date();
-        this.path = new DocPath("1");
+        this.path = new DocPath("C:\\Users\\Public\\Documents\\test.pdf");
         this.file = new File(this.path.getPath());
     }
 
