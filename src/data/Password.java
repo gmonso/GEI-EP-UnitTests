@@ -11,7 +11,7 @@ public class Password {
 
     public Password(String code) throws NullArgumentException, WrongFormatException {
         if (code == null) throw new NullArgumentException("Password is null");
-        if (!CorrectFormat(code)) throw new WrongFormatException("Password is not in the correct format");
+        if (!correctFormat(code)) throw new WrongFormatException("Password is not in the correct format");
         this.password = code;
     }
 
@@ -19,7 +19,7 @@ public class Password {
         return password;
     }
 
-    public boolean CorrectFormat(String code) {
+    public boolean correctFormat(String code) {
         if (code.length() < 8) return false;
         if (code.length() > 20) return false;
         if (!Character.isLetter(code.charAt(0))) return false;

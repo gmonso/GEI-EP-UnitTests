@@ -27,20 +27,20 @@ public class NifTest {
     }
 
     @Test
-    public void NifEquals() throws NullArgumentException, WrongFormatException {
+    public void nifEquals() throws NullArgumentException, WrongFormatException {
         Nif nif = new Nif("12345678A");
         assertTrue(nif.equals(nif));
     }
 
     @Test
-    public void NifNotEquals() throws NullArgumentException, WrongFormatException {
+    public void nifNotEquals() throws NullArgumentException, WrongFormatException {
         Nif nif1 = new Nif("12345678A");
         Nif nif2 = new Nif("12345678B");
         assertFalse(nif1.equals(nif2));
     }
 
     @Test
-    public void NifEquals2() throws NullArgumentException, WrongFormatException {
+    public void nifEquals2() throws NullArgumentException, WrongFormatException {
         Nif nif1 = new Nif("12345678A");
         Nif nif2 = new Nif("12345678A");
         assertTrue(nif1.equals(nif2));
