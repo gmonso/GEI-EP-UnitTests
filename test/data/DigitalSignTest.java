@@ -29,21 +29,21 @@ public class DigitalSignTest {
     }
 
     @Test
-    public void DigitalSignEquals() throws NullArgumentException, WrongFormatException {
+    public void digitalSignEquals() throws NullArgumentException, WrongFormatException {
         byte[] signature = new byte[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 4, 3, 6};
         DigitalSignature digitalSignature = new DigitalSignature(signature);
         assertTrue(digitalSignature.equals(digitalSignature));
     }
 
     @Test
-    public void DigitalSignNotEquals() throws NullArgumentException, WrongFormatException {
+    public void digitalSignNotEquals() throws NullArgumentException, WrongFormatException {
         DigitalSignature digitalSignature1 = new DigitalSignature(new byte[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 4, 3, 6});
         DigitalSignature digitalSignature2 = new DigitalSignature(new byte[]{1, 2, 3, 4, 5, 6, 7});
         assertFalse(digitalSignature1.equals(digitalSignature2));
     }
 
     @Test
-    public void DigitalSignEquals2() throws NullArgumentException, WrongFormatException {
+    public void digitalSignEquals2() throws NullArgumentException, WrongFormatException {
         DigitalSignature digitalSignature1 = new DigitalSignature(new byte[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 4, 3, 6});
         DigitalSignature digitalSignature2 = new DigitalSignature(new byte[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 4, 3, 6});
         assertTrue(digitalSignature1.equals(digitalSignature2));

@@ -4,12 +4,16 @@ import data.DocPath;
 import data.Goal;
 import data.Nif;
 import data.SmallCode;
+import exceptions.OpenDocumentException;
 import publicadministration.*;
 import services.CAS;
 import services.CertificationAuthority;
 import services.GPD;
 import services.JusticeMinistry;
 
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 
 public class UnifiedPlatform {
@@ -96,7 +100,12 @@ public class UnifiedPlatform {
 
     }
 
-    private void openDocument(DocPath path) {
+    private void openDocument(DocPath path) throws OpenDocumentException {
+        try {
+            Desktop.getDesktop().open(new File(String.valueOf(path)));
+        } catch (IOException e) {
+            throw new OpenDocumentException("Error opening document");
+        }
 
     }
 

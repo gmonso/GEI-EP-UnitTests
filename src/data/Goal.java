@@ -27,7 +27,7 @@ public class Goal {
         return type;
     }
 
-    public boolean CorrectFormat(String code) {
+    public boolean correctFormat(String code) {
         if (code.length() < 3) return false;
         if (code.length() > 20) return false;
         for (int i = 0; i < code.length(); i++) {
@@ -40,6 +40,7 @@ public class Goal {
         for (GoalType goalType : GoalType.values()) {
             if (goalType.equals(type)) return true;
         }
+
         return false;
     }
 

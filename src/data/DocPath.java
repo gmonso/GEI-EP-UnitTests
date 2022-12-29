@@ -11,7 +11,7 @@ public class DocPath {
 
     public DocPath(String code) throws NullArgumentException, WrongFormatException {
         if (code == null) throw new NullArgumentException("Path is null");
-        if (!CorrectPath(code)) throw new WrongFormatException("Path is not in the correct format");
+        if (!correctPath(code)) throw new WrongFormatException("Path is not in the correct format");
         this.path = code;
     }
 
@@ -19,7 +19,7 @@ public class DocPath {
         return path;
     }
 
-    public boolean CorrectPath(String code) {
+    public boolean correctPath(String code) {
         return Pattern.matches("^[a-zA-Z]:\\\\(?:[^\\\\/:*?\"<>|]+\\\\)*[^\\\\/:*?\"<>|]*$", code);
     }
 

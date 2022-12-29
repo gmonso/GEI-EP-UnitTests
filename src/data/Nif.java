@@ -8,7 +8,7 @@ final public class Nif {
 
     public Nif(String code) throws NullArgumentException, WrongFormatException {
         if (code == null) throw new NullArgumentException("Nif is null");
-        if (!CorrectFormat(code)) throw new WrongFormatException("Nif is not in the correct format");
+        if (!correctFormat(code)) throw new WrongFormatException("Nif is not in the correct format");
         this.nif = code;
     }
 
@@ -16,7 +16,7 @@ final public class Nif {
         return nif;
     }
 
-    public boolean CorrectFormat(String code) {
+    public boolean correctFormat(String code) {
         if (code.length() != 9) return false;
         for (int i = 0; i < 8; i++) {
             if (!Character.isDigit(code.charAt(i))) return false;

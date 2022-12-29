@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PasswordTest {
 
     @Test
-    public void NullPassword() {
+    public void nullPassword() {
         Throwable exception = assertThrows(NullArgumentException.class, () -> new Password(null));
         assertEquals("Password is null", exception.getMessage());
     }
