@@ -3,21 +3,31 @@ package publicadministration;
 import data.Nif;
 
 import java.math.BigDecimal;
+import java.security.SecureRandom;
 import java.util.Date;
+import java.util.stream.IntStream;
 
 public class CardPayment {
     // The information associated to the payment realized via internet
     private final String reference; // The code of the operation
     private final Nif nif; // The nif of the user
     private final Date date; // The date of the operation
-    private final BigDecimal bdImport; // The import of the payment
+    private final BigDecimal imp; // The import of the payment
 
 
-    public CardPayment(String reference, Nif nif, Date date, BigDecimal bdimport) {
-        this.reference = reference;
+    public CardPayment (Nif nif, BigDecimal imp) {
+        this.reference = this.generateReference(); // "1234567890";
         this.nif = nif;
-        this.date = date;
-        this.bdImport = bdimport;
+        this.date = new Date();
+        this.imp = imp;
+    }
+
+    private String generateReference() {
+        SecureRandom random = new SecureRandom();
+        return IntStream.range(0, 20)
+                .mapToObj(i -> String.valueOf(random.nextInt(10)))
+                .reduce((a, b) -> a + b)
+                .get();
     }
 
 
@@ -34,7 +44,7 @@ public class CardPayment {
     }
 
     public BigDecimal getImport() {
-        return bdImport;
+        return imp;
     }
 
 
@@ -44,7 +54,7 @@ public class CardPayment {
                 "reference='" + reference + '\'' +
                 ", nif=" + nif +
                 ", date=" + date +
-                ", import =" + bdImport +
+                ", import =" + imp +
                 '}';
     }
 }

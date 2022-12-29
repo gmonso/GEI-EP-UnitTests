@@ -4,6 +4,9 @@ import data.DigitalSignature;
 import data.DocPath;
 import data.Goal;
 import data.Nif;
+import exceptions.GoalTypeException;
+import exceptions.NullArgumentException;
+import exceptions.WrongFormatException;
 
 import java.io.File;
 import java.util.Date;
@@ -16,13 +19,13 @@ public class CriminalRecordCertf extends PDFDocument { // Represents the Crimina
     private final DigitalSignature digSign;
     private final CrimConvictionsColl crimConvs;
 
-    public CriminalRecordCertf(Date creatDate, DocPath path, File file, Nif nif, String name, Goal goal, DigitalSignature digSign, CrimConvictionsColl crimConvs) {
-        super(creatDate, path, file);
+    public CriminalRecordCertf (Nif nif, String name, Goal g, DigitalSignature ds, CrimConvictionsColl crmC) throws NullArgumentException, WrongFormatException, GoalTypeException {
+        super();
         this.nif = nif;
         this.name = name;
-        this.goal = goal;
-        this.digSign = digSign;
-        this.crimConvs = crimConvs;
+        this.goal = new Goal("123", Goal.GoalType.OTHER);
+        this.digSign = new DigitalSignature(new byte[4]);
+        this.crimConvs = new CrimConvictionsColl();
     }
 
     public Nif getNif() {

@@ -62,7 +62,7 @@ public class Goal {
     }
 
 
-    enum GoalType {
+    public enum GoalType {
         WORKER, STUDENT, RETIRED, UNEMPLOYED, OTHER
     }
 }
