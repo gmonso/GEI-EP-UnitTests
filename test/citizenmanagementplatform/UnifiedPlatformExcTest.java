@@ -1,4 +1,4 @@
-package services;
+package citizenmanagementplatform;
 
 import citizenmanagementplatform.UnifiedPlatform;
 import data.*;
@@ -7,6 +7,10 @@ import interfaces.UnifiedPlatformTstg;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import publicadministration.*;
+import services.CASdouble;
+import services.CertAuthDouble;
+import services.GPDdobule;
+import services.JustMinDouble;
 
 import java.io.IOException;
 import java.math.BigDecimal;
