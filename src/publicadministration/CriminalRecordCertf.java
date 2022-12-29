@@ -1,6 +1,7 @@
 package publicadministration;
 
 import data.DigitalSignature;
+import data.DocPath;
 import data.Goal;
 import data.Nif;
 import exceptions.GoalTypeException;
@@ -43,7 +44,9 @@ public class CriminalRecordCertf extends PDFDocument { // Represents the Crimina
     public CrimConvictionsColl getCrimConvs() {
         return crimConvs;
     }
-
+    public DocPath getPath(){
+        return super.getPath();
+    }
     @Override
     public String toString() {
         return "CriminalRecordCertf{" +

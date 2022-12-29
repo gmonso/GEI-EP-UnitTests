@@ -30,7 +30,7 @@ public class CertAuthDouble implements CertificationAuthority{
         if(!citizensPhones.containsKey(nif.getNif())) throw new AnyMobileRegisteredException();
         SmallCode small = null;
         int b = (int)(Math.random()*(999-101+1)+101);
-        small = new SmallCode(small.toString());
+        small = new SmallCode(String.valueOf(b));
         userPins.put(nif.getNif(), small);
         return true;
     }

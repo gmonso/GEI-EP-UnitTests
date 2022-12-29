@@ -6,6 +6,7 @@ import exceptions.*;
 import publicadministration.Citizen;
 import publicadministration.*;
 
+import java.io.IOException;
 import java.net.ConnectException;
 import java.util.HashSet;
 import java.util.Objects;
@@ -17,9 +18,9 @@ public class JustMinDouble implements JusticeMinistry{
         crimCertfs = new HashSet<>();
     }
     @Override
-    public CriminalRecordCertf getCriminalRecordCertf(Citizen pers, Goal g) throws ConnectException, DigitalSignatureException {
+    public CriminalRecordCertf getCriminalRecordCertf(Citizen pers, Goal g) throws IOException, DigitalSignatureException {
         for(CriminalRecordCertf crimCerf : this.crimCertfs){
-            if(crimCerf.getNif() == pers.getNif() && crimCerf.getGoal() == g && Objects.equals(crimCerf.getName(), pers.getName())){
+            if(Objects.equals(crimCerf.getNif().getNif(), pers.getNif().getNif()) && Objects.equals(crimCerf.getGoal().getGoal(), g.getGoal()) && Objects.equals(crimCerf.getName(), pers.getName())){
                 return crimCerf;
             }
             if(crimCerf.getDigSign().getSignature().length <= 0 || crimCerf.getDigSign() == null){

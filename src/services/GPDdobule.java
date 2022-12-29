@@ -2,6 +2,7 @@ package services;
 
 import data.Goal;
 import exceptions.IncorrectVerificationException;
+import exceptions.NifNotRegisteredException;
 import publicadministration.Citizen;
 
 import java.net.ConnectException;
@@ -27,7 +28,13 @@ public class GPDdobule implements GPD {
         }
         throw new IncorrectVerificationException();
     }
-
+    public String getGoal(String nif) throws NifNotRegisteredException {
+        if(citNgoals.containsKey(nif)){
+            return citNgoals.get(nif);
+        }else{
+            throw new NifNotRegisteredException();
+        }
+    }
     public void addCitizen(Citizen c){
         this.citizens.add(c);
     }
