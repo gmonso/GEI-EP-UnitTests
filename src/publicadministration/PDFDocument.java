@@ -1,6 +1,8 @@
 package publicadministration;
 
 import data.DocPath;
+import exceptions.NullArgumentException;
+import exceptions.WrongFormatException;
 
 import java.awt.*;
 import java.io.File;
@@ -16,10 +18,10 @@ public class PDFDocument {
     private final File file;
     // Initializes attributes and emulates the document download at a default path
 
-    public PDFDocument(Date creatDate, DocPath path, File file) {
-        this.creatDate = creatDate;
-        this.path = path;
-        this.file = file;
+    public PDFDocument() throws NullArgumentException, WrongFormatException {
+        this.creatDate = new Date();
+        this.path = new DocPath("1");
+        this.file = new File(this.path.getPath());
     }
 
     public Date getCreatDate() {
@@ -51,23 +53,23 @@ public class PDFDocument {
             throw new IOException("The destination path is null");
         }
         try {
-
-            Files.move((Path) this.path, (Path) destPath, StandardCopyOption.REPLACE_EXISTING);
+            // revisar
+            Files.move(Path.of(this.path.getPath()), Path.of(destPath.getPath()), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
-            // handle the exception
+            throw new IOException("The document could not be moved");
         }
         this.path = destPath;
-
     }
 
     // Opens the document at the path indicated
     public void openDoc(DocPath path) throws IOException {
         if (path == null) throw new IOException("The path is null");
         try {
-            File file = new File(path.toString());
+            File file = new File(path.getPath());
             Desktop.getDesktop().open(file);
         } catch (IOException ex) {
             throw new IOException("The file cannot be opened");
         }
+        this.path = path;
     }
 }

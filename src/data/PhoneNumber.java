@@ -3,48 +3,58 @@ package data;
 import exceptions.NullArgumentException;
 import exceptions.WrongFormatException;
 
+import java.security.SecureRandom;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class PhoneNumber {
-
-    private String number;
+    private String phoneNumber;
 
     public PhoneNumber(String number) throws NullArgumentException, WrongFormatException {
-        if (number == null) throw new NullArgumentException("Number is null");
-        if (!correctNumber(number)) throw new WrongFormatException("Number is not in the correct format");
-        this.number = number;
+        if (number == null) throw new NullArgumentException("Card number is null");
+        if (!this.correctFormat(number)) throw new WrongFormatException("Card number is not in the correct format");
+        this.phoneNumber = number;
     }
 
-    public boolean correctNumber(String number) {
-        if (number.length() != 9) return false;
-        return number.matches("[0-9]+");
+    private boolean correctFormat(String phoneNumber) {
+        return phoneNumber.length() == 9;
     }
 
-    public void setNumber(String num) {
-        this.number = num;
+    public void setPhoneNumber(String num) {
+        this.phoneNumber = num;
     }
 
-    public String getNumber() {
-        return this.number;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PhoneNumber that = (PhoneNumber) o;
-        return Objects.equals(number, that.number);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(number);
+    public String getPhoneNumber() {
+        return this.phoneNumber;
     }
 
     @Override
     public String toString() {
         return "PhoneNumber{" +
-                "number='" + number + '\'' +
+                "phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PhoneNumber that)) return false;
+        return Objects.equals(getPhoneNumber(), that.getPhoneNumber());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getPhoneNumber());
+    }
+
+    public static PhoneNumber getInstance() throws NullArgumentException, WrongFormatException {
+        SecureRandom random = new SecureRandom();
+        String phoneNumber = IntStream.range(0, 8)
+                .mapToObj(i -> String.valueOf(random.nextInt(10)))
+                .reduce((a, b) -> a + b)
+                .get();
+        return new PhoneNumber('6' + phoneNumber);
+    }
+
+
 }
