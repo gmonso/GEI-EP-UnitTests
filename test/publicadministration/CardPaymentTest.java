@@ -9,37 +9,24 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CardPaymentTest {
     private CardPayment cardPayment;
-    private String reference;
     private Nif nif;
-    private Date date;
-    private BigDecimal bdimport;
+    private BigDecimal imp;
 
     @BeforeEach
     void init() throws NullArgumentException, WrongFormatException {
         nif = new Nif("12345678Z");
-        reference = "123412341234";
-        date = new Date();
-        bdimport = new BigDecimal(100);
-        cardPayment = new CardPayment(reference, nif, date, bdimport);
-
+        imp = new BigDecimal(100);
+        cardPayment = new CardPayment(nif, imp);
     }
 
     @Test
     public void testConstructor() {
-        assertEquals(reference, cardPayment.getReference());
         assertEquals(nif, cardPayment.getNif());
-        assertEquals(date, cardPayment.getDate());
-        assertEquals(bdimport, cardPayment.getImport());
-    }
-
-    @Test
-    public void testGetReference() {
-        assertEquals(reference, cardPayment.getReference());
+        assertEquals(imp, cardPayment.getImport());
     }
 
     @Test
@@ -48,19 +35,14 @@ public class CardPaymentTest {
     }
 
     @Test
-    public void testGetDate() {
-        assertEquals(date, cardPayment.getDate());
-    }
-
-    @Test
     public void testGetImport() {
-        assertEquals(bdimport, cardPayment.getImport());
+        assertEquals(imp, cardPayment.getImport());
     }
 
     @Test
     void testNullConstructor() {
         try {
-            CreditCard c = new CreditCard(null, null, null, null);
+            CardPayment c = new CardPayment(null, null);
         } catch (Exception ignored) {
             fail();
         }
@@ -68,6 +50,6 @@ public class CardPaymentTest {
 
     @Test
     public void testToString() {
-        assertEquals(true, cardPayment.toString() instanceof String);
+        assertNotNull(cardPayment.toString());
     }
 }

@@ -1,15 +1,16 @@
 package publicadministration;
 
 import data.Nif;
+import data.PhoneNumber;
 
 public class Citizen {
     // Represents all the information required for a citizen
     private final Nif nif;
     private final String name;
     private final String address;
-    private final String mobileNumb;
+    private final PhoneNumber mobileNumb;
 
-    public Citizen(Nif nif, String name, String address, String mobileNumb) {
+    public Citizen(Nif nif, String name, String address, PhoneNumber mobileNumb) {
         this.nif = nif;
         this.name = name;
         this.address = address;
@@ -28,7 +29,7 @@ public class Citizen {
         return address;
     }
 
-    public String getMobileNumb() {
+    public PhoneNumber getMobileNumb() {
         return mobileNumb;
     }
 
