@@ -5,17 +5,20 @@ import exceptions.NullArgumentException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import publicadministration.*;
-public class CrimConvictionsColl { // Represents the total criminal convictions registered for a citizen
-    // Its components, that is, the set of criminal convictions
+
+public class CrimConvictionsColl {
+    // Represents the total criminal convictions registered for a citizen
     private final Set<CrimConviction> crimConvs;
 
 
     public CrimConvictionsColl() {
         this.crimConvs = new HashSet<>();
-    } // Initializes the object
+        this.numConvs = 0;
+    }
 
-    // the getters --V
+    public int getNumConvs() {
+        return this.numConvs;
+    }
 
     public Set<CrimConviction> getCrimConvs() {
         return this.crimConvs;
@@ -28,17 +31,22 @@ public class CrimConvictionsColl { // Represents the total criminal convictions 
         if(correctFOrm(crmC))
             this.crimConvs.add(crmC);
         }
-
-    private boolean correctFOrm(CrimConviction crmC) throws NullArgumentException {
+        
+   private boolean correctFOrm(CrimConviction crmC) throws NullArgumentException {
         if(crmC.getDate() == null || crmC.getOffense() == null || crmC.getSentence() == null){
             throw new NullArgumentException("Element a CrimConv null");
         }
         return true;
     }
 
-    // Adds a criminal conviction
-    public CrimConviction getCriminalConviction(Date date) throws NullArgumentException {
-        if(date == null) throw new NullArgumentException("Date value Is null");
+
+    public void addCriminalConviction(CrimConviction crmC) {
+        this.crimConvs.add(crmC);
+        this.numConvs++;
+    }
+
+    public CrimConviction getCriminalConviction(Date date) {
+
         for (CrimConviction crim : this.crimConvs) {
             if (crim.getDate().equals(date)) {
                 return crim;
@@ -46,8 +54,6 @@ public class CrimConvictionsColl { // Represents the total criminal convictions 
         }
         return null;
     }
-
-    // Gets a specific criminal conviction by date
 
     @Override
     public String toString() {
