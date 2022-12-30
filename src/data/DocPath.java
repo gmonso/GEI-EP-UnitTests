@@ -3,6 +3,8 @@ package data;
 import exceptions.NullArgumentException;
 import exceptions.WrongFormatException;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -19,8 +21,8 @@ public class DocPath {
         return path;
     }
 
-    public boolean CorrectPath(String code) {
-        return Pattern.matches("^[a-zA-Z]:\\\\(?:[^\\\\/:*?\"<>|]+\\\\)*[^\\\\/:*?\"<>|]*$", code);
+    public boolean CorrectPath(String path) {
+        return Pattern.matches("^.*\\.pdf$", path);
     }
 
     @Override

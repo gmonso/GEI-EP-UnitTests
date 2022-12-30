@@ -7,6 +7,8 @@ import exceptions.GoalTypeException;
 import exceptions.NullArgumentException;
 import exceptions.WrongFormatException;
 
+import java.io.IOException;
+
 public class CriminalRecordCertf extends PDFDocument { // Represents the Criminal Record Certificate
 
     private final Nif nif;
@@ -15,7 +17,7 @@ public class CriminalRecordCertf extends PDFDocument { // Represents the Crimina
     private final DigitalSignature digSign;
     private final CrimConvictionsColl crimConvs;
 
-    public CriminalRecordCertf(Nif nif, String name, Goal g, DigitalSignature ds, CrimConvictionsColl crmC) throws NullArgumentException, WrongFormatException, GoalTypeException {
+    public CriminalRecordCertf(Nif nif, String name, Goal g, DigitalSignature ds, CrimConvictionsColl crmC) throws NullArgumentException, WrongFormatException, GoalTypeException, IOException {
         super();
         this.nif = nif;
         this.name = name;
