@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,7 +22,7 @@ public class CriminalRecordCertfTest {
     private CriminalRecordCertf criminalRecordCertf;
 
     @BeforeEach
-    // init all attrs and instance object
+        // init all attrs and instance object
     void init() throws NullArgumentException, GoalTypeException, WrongFormatException, IOException {
         nif = new Nif("12345678Z");
         name = "John Doe";
