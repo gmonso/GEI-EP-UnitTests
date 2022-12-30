@@ -9,6 +9,7 @@ import java.util.Set;
 public class CrimConvictionsColl {
     // Represents the total criminal convictions registered for a citizen
     private final Set<CrimConviction> crimConvs;
+    private int numConvs;
 
 
     public CrimConvictionsColl() {
@@ -24,10 +25,6 @@ public class CrimConvictionsColl {
         return this.crimConvs;
     }
 
-    public int getNumConvs() {
-        return this.crimConvs.size();
-    }
-
     public void addCriminalConviction(CrimConviction crmC) throws NullArgumentException {
         if (crmC == null) throw new NullArgumentException("Crim Conv Coll value Is null");
         if (correctFOrm(crmC))
@@ -41,13 +38,7 @@ public class CrimConvictionsColl {
         return true;
     }
 
-
-    public void addCriminalConviction(CrimConviction crmC) {
-        this.crimConvs.add(crmC);
-        this.numConvs++;
-    }
-
-    public CrimConviction getCriminalConviction(Date date) {
+    public CrimConviction getCriminalConviction(Date date) throws NullArgumentException {
 
         for (CrimConviction crim : this.crimConvs) {
             if (crim.getDate().equals(date)) {
@@ -65,4 +56,3 @@ public class CrimConvictionsColl {
                 '}';
     }
 }
-
