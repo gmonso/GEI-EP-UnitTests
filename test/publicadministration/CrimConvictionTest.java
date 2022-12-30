@@ -1,5 +1,6 @@
 package publicadministration;
 
+import exceptions.NullArgumentException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,22 +23,22 @@ public class CrimConvictionTest {
     }
 
     @Test
-    void testGetDate() {
+    void testGetDate() throws NullArgumentException {
         assertEquals(commitDate, crimConviction.getDate());
     }
 
     @Test
-    void testGetOffense() {
+    void testGetOffense() throws NullArgumentException {
         assertEquals(offense, crimConviction.getOffense());
     }
 
     @Test
-    void testGetSentence() {
+    void testGetSentence() throws NullArgumentException {
         assertEquals(sentence, crimConviction.getSentence());
     }
 
     @Test
-    public void testConstructor() {
+    public void testConstructor() throws NullArgumentException {
         assertEquals(commitDate, crimConviction.getDate());
         assertEquals(offense, crimConviction.getOffense());
         assertEquals(sentence, crimConviction.getSentence());

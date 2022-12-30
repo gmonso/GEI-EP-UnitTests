@@ -1,6 +1,6 @@
 package services;
 
-
+import exceptions.IncorrectFormException;
 import exceptions.InsufficientBalanceException;
 import exceptions.NotValidPaymentDataException;
 import publicadministration.CreditCard;
@@ -13,5 +13,5 @@ public interface CAS {// External service that represents the Credit Authorizati
 
     boolean askForApproval(String nTrans, CreditCard cardData,
                            Date date, BigDecimal imp) throws NotValidPaymentDataException,
-            InsufficientBalanceException, ConnectException;
+            InsufficientBalanceException, ConnectException, IncorrectFormException;
 }

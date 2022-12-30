@@ -1,5 +1,6 @@
 package publicadministration;
 
+import exceptions.NullArgumentException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -48,7 +49,7 @@ public class CrimConvictionsCollTest {
     }
 
     @Test
-    void testAddAndGetCriminalConviction() {
+    void testAddAndGetCriminalConviction() throws NullArgumentException {
         Date date_today = new Date();
         Date date_towmorrow = new Date(date_today.getTime() + (1000 * 60 * 60 * 24 * 2));
         CrimConviction crmC1 = new CrimConviction(date_today, "offense", "sentence");

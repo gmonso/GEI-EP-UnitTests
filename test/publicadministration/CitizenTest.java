@@ -8,6 +8,8 @@ import exceptions.WrongFormatException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -24,7 +26,7 @@ public class CitizenTest {
         name = "John Doe";
         address = "123 Main Street";
         mobileNumb = PhoneNumber.getInstance();
-        citizen = new Citizen(nif, name, address, mobileNumb);
+        citizen = new Citizen(nif, name, address, mobileNumb, new Date(2, 2, 2));
     }
 
     @Test
@@ -58,7 +60,7 @@ public class CitizenTest {
     @Test
     void testNullConstructor() {
         try {
-            Citizen c = new Citizen(null, null, null, null);
+            Citizen c = new Citizen(null, null, null, null, null);
         } catch (Exception ignored) {
             fail();
         }

@@ -19,7 +19,7 @@ public class CardPayment {
     public CardPayment(Nif nif, BigDecimal imp) throws NullArgumentException, WrongFormatException {
         this.reference = Reference.getInstance(); // "1234567890";
         this.nif = nif;
-        this.date = new Date();
+        this.date = new Date(2, 2, 2);
         this.imp = imp;
     }
 
