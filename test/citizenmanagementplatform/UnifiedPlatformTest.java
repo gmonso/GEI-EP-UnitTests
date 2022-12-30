@@ -1,5 +1,6 @@
 package citizenmanagementplatform;
 
+import citizenmanagementplatform.UnifiedPlatform;
 import data.*;
 import exceptions.*;
 import interfaces.UnifiedPlatformTstg;
@@ -15,8 +16,10 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.ConnectException;
 import java.util.Date;
-
+import java.util.HashMap;
+import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class UnifiedPlatformTest implements UnifiedPlatformTstg {
     public CertAuthDouble cerAuth = new CertAuthDouble();
@@ -24,19 +27,12 @@ public class UnifiedPlatformTest implements UnifiedPlatformTstg {
     public GPDdobule GPD = new GPDdobule();
     public JustMinDouble justMin = new JustMinDouble();
     public UnifiedPlatform up;
-
     public Date d = new Date(2024,8,24);
     public Citizen ctz = new Citizen(new Nif("99999998C"),"Name", "user address", new PhoneNumber("666666666"), d);
     public CreditCard CC = new CreditCard(ctz.getNif(), new CardNumber("4444444444444444"), new Date(2029,5,12), new SmallCode("222"));
-
-    public Date d = new Date(2024, 8, 24);
-    public Citizen ctz = new Citizen(new Nif("99999998C"), "Name", "user address", "666666666", d);
-    public CreditCard CC = new CreditCard(ctz.getNif(), "4444444444444444", new Date(2023, 5, 12), new SmallCode("222"));
-
     public CrimConvictionsColl CColl;
     public CriminalRecordCertf crc;
     public DigitalSignature DS;
-
     public UnifiedPlatformTest() throws NullArgumentException, WrongFormatException {
     }
 
@@ -78,7 +74,7 @@ public class UnifiedPlatformTest implements UnifiedPlatformTstg {
     @Override
     @Test
     public void testEnterNifAndPinObt() throws IncorrectValDateException, NifNotRegisteredException, AnyMobileRegisteredException, NullArgumentException, ConnectException, WrongFormatException {
-        up.enterNIFandPINobt(ctz.getNif(), d);
+        up.enterNIFandPINobt(ctz.getNif(),d );
         SmallCode pinGuardat = up.usersPins.get(ctz.getNif().getNif());
         assertEquals(pinGuardat, this.cerAuth.getUserPin(ctz.getNif()));
     }
@@ -86,7 +82,7 @@ public class UnifiedPlatformTest implements UnifiedPlatformTstg {
     @Override
     @Test
     public void testEnterPIN() throws NotValidPINException, NifNotRegisteredException, ConnectException, IncorrectValDateException, AnyMobileRegisteredException, NullArgumentException, WrongFormatException {
-        up.enterNIFandPINobt(ctz.getNif(), d);
+        up.enterNIFandPINobt(ctz.getNif(),d);
         SmallCode pinGuardat = up.usersPins.get(ctz.getNif().getNif());
         up.enterPIN(pinGuardat);
         assertTrue(up.sentTrue());

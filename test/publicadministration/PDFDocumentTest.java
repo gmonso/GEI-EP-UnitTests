@@ -6,9 +6,11 @@ import exceptions.WrongFormatException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,12 +33,12 @@ public class PDFDocumentTest {
     }
 
     @Test
-    void testGetFile() {
+    void testGetFile(){
         assertNotNull(pdfDocument.getFile());
     }
 
     @Test
-    void testGetCreateDate() {
+    void testGetCreateDate(){
         assertNotNull(pdfDocument.getCreateDate());
     }
 
@@ -78,6 +80,7 @@ public class PDFDocumentTest {
         assertDoesNotThrow(() -> pdfDocument.openDoc(new DocPath(currentPath + "/open_file.pdf")));
         Files.delete(Path.of(currentPath + "/open_file.pdf"));
     }
+
 
 
 }

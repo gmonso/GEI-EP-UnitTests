@@ -1,5 +1,4 @@
 package interfaces;
-
 import exceptions.NullArgumentException;
 import exceptions.WrongFormatException;
 

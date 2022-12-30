@@ -1,8 +1,10 @@
 package services;
 
 import data.Nif;
+import data.PhoneNumber;
 import data.SmallCode;
 import exceptions.*;
+import publicadministration.Citizen;
 
 import java.net.ConnectException;
 import java.util.Date;

@@ -1,14 +1,18 @@
 package services;
 
 import data.Goal;
-import exceptions.BadPathException;
 import exceptions.DigitalSignatureException;
 import publicadministration.Citizen;
 import publicadministration.CriminalRecordCertf;
 
 import java.io.IOException;
+import java.net.ConnectException;
+
+import exceptions.*;
+import publicadministration.*;
+import data.*;
 
 public interface JusticeMinistry { // External service for the Justice Ministry
-    CriminalRecordCertf getCriminalRecordCertf(Citizen pers, Goal g)
+    CriminalRecordCertf getCriminalRecordCertf (Citizen pers, Goal g)
             throws DigitalSignatureException, IOException, BadPathException;
 }

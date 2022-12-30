@@ -5,15 +5,15 @@ import exceptions.WrongFormatException;
 
 public interface DigitalSignTest_Int {
 
-    void correctDigitalSign() throws NullArgumentException, WrongFormatException;
+        void correctDigitalSign() throws NullArgumentException, WrongFormatException;
 
-    void nullDigitalSign();
+        void nullDigitalSign();
 
-    void badFormatDigitalSign();
+        void badFormatDigitalSign();
 
-    void digitalSignEquals() throws NullArgumentException, WrongFormatException;
+        void digitalSignEquals() throws NullArgumentException, WrongFormatException;
 
-    void digitalSignNotEquals() throws NullArgumentException, WrongFormatException;
+        void digitalSignNotEquals() throws NullArgumentException, WrongFormatException;
 
-    void digitalSignEquals2() throws NullArgumentException, WrongFormatException;
+        void digitalSignEquals2() throws NullArgumentException, WrongFormatException;
 }
