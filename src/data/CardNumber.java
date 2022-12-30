@@ -17,7 +17,8 @@ public class CardNumber {
     }
 
     private boolean correctFormat(String cardNumber) {
-        return cardNumber.length() == 16;
+        // card number only numeric and 16 digits
+        return cardNumber.length() == 16 && IntStream.range(0, cardNumber.length()).allMatch(i -> Character.isDigit(cardNumber.charAt(i)));
     }
 
     public String getCardNumber() {
@@ -49,7 +50,7 @@ public class CardNumber {
 
     public static CardNumber getInstance() throws NullArgumentException, WrongFormatException {
         SecureRandom random = new SecureRandom();
-        String reference = IntStream.range(0, 20)
+        String reference = IntStream.range(0, 16)
                 .mapToObj(i -> String.valueOf(random.nextInt(10)))
                 .reduce((a, b) -> a + b)
                 .get();
