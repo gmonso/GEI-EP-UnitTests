@@ -1,116 +1,123 @@
 package citizenmanagementplatform;
 
-import data.DocPath;
-import data.Goal;
-import data.Nif;
-import data.SmallCode;
-import exceptions.OpenDocumentException;
+import exceptions.*;
+import services.*;
+
 import publicadministration.*;
-import services.CAS;
-import services.CertificationAuthority;
-import services.GPD;
-import services.JusticeMinistry;
+import data.*;
 
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.net.ConnectException;
+
 import java.util.Date;
-
+import java.util.HashMap;
 public class UnifiedPlatform {
-    public CertificationAuthority cerAuth;
-    public CAS CAS;
-    public GPD GPD;
-    public JusticeMinistry justMin;
-    public Nif userNif;
+    public CertAuthDouble cerAuth;
+    public CASdouble CAS;
+    public GPDdobule GPD;
+    public JustMinDouble justMin;
+
     public Citizen citizen;
-    public CreditCard CCard;
-    public CardPayment CPay;
-    public CrimConviction CrimConv;
-    public CrimConvictionsColl CrimColl;
-    public CriminalRecordCertf CrimCertf;
-    public PDFDocument pdfD;
-
-    //v---- SETTERS OF ALL INVOLVED SERVICES AND ELEMENT----v
-    public void setJustMin(JusticeMinistry min) { //Select ministeri de justicia
-        this.justMin = min;
+    public String AuthMethod;
+    public HashMap<String, SmallCode> usersPins;
+    public CriminalRecordCertf doc;
+    public Goal g;
+    public boolean sent = false;
+    public UnifiedPlatform(JusticeMinistry jus, CAS cas, GPD police, CertificationAuthority cerAuth) {
+        this.justMin = (JustMinDouble) jus;
+        this.CAS = (CASdouble) cas;
+        this.GPD = (GPDdobule) police;
+        this.cerAuth = (CertAuthDouble) cerAuth;
+        this.usersPins = new HashMap<>();
     }
-
-    public void setCAS(CAS cas) {
-        this.CAS = cas;
+    public void selectJusMin(){
+        System.out.println("User select the Justice Ministry");
     }
-
-    public void setGPD(GPD gpd) {
-        this.GPD = gpd;
+    public boolean registered = false;
+    public void selectProcedures () {
+        System.out.println("User select procedures");
     }
-
-    public void setCertAuth(CertificationAuthority auth) {
-        this.cerAuth = auth;
+    public void selectCriminalReportCertf () {
+        System.out.println("User select get the Criminal Record Certificate");
     }
-
-    public void setNif(Nif nif) {
-        this.userNif = nif;
+    public void selectAuthMethod (byte opc) {
+        if(opc == 0){
+            this.AuthMethod = "CLAVE_PIN";
+        }else if(opc == 1){
+            this.AuthMethod = "CLAVE_PERMANENTE";
+        }else{
+            this.AuthMethod = "CERTIFICADO_DIGITAL";
+        }
     }
-
-    //Mètodes que s'han de aplicar
-    public void selectJusMin() {
-
+    public void enterNIFandPINobt (Nif nif, Date valDate) throws IncorrectValDateException, NifNotRegisteredException, AnyMobileRegisteredException, NullArgumentException, ConnectException, WrongFormatException {
+        if(this.cerAuth.sendPIN(nif, valDate)) System.out.println("Pin sent successfully!");
+        SmallCode pin = this.cerAuth.getUserPin(nif);
+        usersPins.put(nif.getNif(), pin);
     }
-
-    public void selectProcedures() {
-
+    public void enterPIN (SmallCode pin) throws NotValidPINException, NifNotRegisteredException, ConnectException {
+        if(usersPins.containsValue(pin)) {
+            boolean x = this.cerAuth.checkPIN(citizen.getNif(), pin);
+            if (x) {
+                System.out.println("PIN correct by user. Needs verification with police and make form");
+                sent = true;
+            }
+        }
     }
-
-    public void selectCriminalReportCertf() {
-
+    public boolean sentTrue(){
+        return sent;
     }
-
-    public void selectAuthMethod(byte opc) {
-
+    public void executeEnterForm(Citizen citz, Goal g) throws IncorrectVerificationException, IncorrectFormException, ConnectException {
+        enterForm(citz, g);
     }
-
-    public void enterNIFandPINobt(Nif nif, Date valDate) {
-
-    }
-
-    public void enterPIN(SmallCode pin) {
-
-    }
-
-    private void enterForm(Citizen citz, Goal goal) {
-
-    }
-
-    private void realizePayment() {
-
-    }
-
-    private void enterCardData(CreditCard cardD) {
-
-    }
-
-    private void obtainCertificate() {
-
-    }
-
-    private void printDocument() {
-
-    }
-
-    private void registerPayment() {
-
-    }
-
-    private void openDocument(DocPath path) throws OpenDocumentException {
-        try {
-            Desktop.getDesktop().open(new File(String.valueOf(path)));
-        } catch (IOException e) {
-            throw new OpenDocumentException("Error opening document");
+    private void enterForm (Citizen citz, Goal goal) throws IncorrectVerificationException, ConnectException, IncorrectFormException {
+        if(citz == null || goal == null){
+            throw new IncorrectFormException();
+        }
+        if(this.GPD.verifyData(citz, goal)){
+            System.out.println("Form entered and data verified.");
         }
 
     }
+    private void realizePayment () {
+        System.out.println("User is ready for card payment.");
+    }
+    public void setGoal() throws NullArgumentException, WrongFormatException {
+        this.g = new Goal("The22goal");
+    }
+    private void enterCardData (CreditCard cardD) throws NotValidPaymentDataException, InsufficientBalanceException, ConnectException, IncorrectFormException {
+        boolean x = this.CAS.askForApproval("Tranferece", cardD, new Date(2,2,2), new BigDecimal(20));
+        if(x){
+            registerPayment();
+            System.out.println("Card data introduced and verified successifully");
+        }
+        if(!x) System.out.println("Failed Card payment");
+    }
+    public void executeEnterCardData(CreditCard card) throws NotValidPaymentDataException, InsufficientBalanceException, IncorrectFormException, ConnectException {
+        enterCardData(card);
+    }
+    public void executeObtainCer() throws DigitalSignatureException, IOException, BadPathException {
+        obtainCertificate();
+    }
+    private void obtainCertificate () throws DigitalSignatureException, IOException, BadPathException {
+        doc = this.justMin.getCriminalRecordCertf(citizen, g);
+        doc.openDoc(doc.getPath());
+    }
+    private void printDocument () {
+        printDocument(doc.getPath());
+    }
+    private void registerPayment () {
+        registered = true;
+        System.out.println("Payment registered.");
+    }
+    private void openDocument (DocPath path) {
 
-    private void printDocument(DocPath path) {
+    }
+    private void printDocument (DocPath path) {
 
+    }
+    public void setCitizen(Citizen ci){
+        this.citizen = ci;
     }
 
 }

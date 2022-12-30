@@ -5,9 +5,14 @@ import exceptions.DigitalSignatureException;
 import publicadministration.Citizen;
 import publicadministration.CriminalRecordCertf;
 
+import java.io.IOException;
 import java.net.ConnectException;
 
+import exceptions.*;
+import publicadministration.*;
+import data.*;
+
 public interface JusticeMinistry { // External service for the Justice Ministry
-    CriminalRecordCertf getCriminalRecordCertf(Citizen persD, Goal g)
-            throws DigitalSignatureException, ConnectException;
+    CriminalRecordCertf getCriminalRecordCertf (Citizen pers, Goal g)
+            throws DigitalSignatureException, IOException, BadPathException;
 }

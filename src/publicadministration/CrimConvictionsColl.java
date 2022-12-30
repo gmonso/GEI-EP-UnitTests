@@ -1,5 +1,7 @@
 package publicadministration;
 
+import exceptions.NullArgumentException;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,7 +9,7 @@ import java.util.Set;
 public class CrimConvictionsColl {
     // Represents the total criminal convictions registered for a citizen
     private final Set<CrimConviction> crimConvs;
-    private int numConvs;
+
 
     public CrimConvictionsColl() {
         this.crimConvs = new HashSet<>();
@@ -21,6 +23,22 @@ public class CrimConvictionsColl {
     public Set<CrimConviction> getCrimConvs() {
         return this.crimConvs;
     }
+    public int getNumConvs(){
+        return this.crimConvs.size();
+    }
+    public void addCriminalConviction(CrimConviction crmC) throws NullArgumentException {
+        if(crmC == null) throw new NullArgumentException("Crim Conv Coll value Is null");
+        if(correctFOrm(crmC))
+            this.crimConvs.add(crmC);
+        }
+        
+   private boolean correctFOrm(CrimConviction crmC) throws NullArgumentException {
+        if(crmC.getDate() == null || crmC.getOffense() == null || crmC.getSentence() == null){
+            throw new NullArgumentException("Element a CrimConv null");
+        }
+        return true;
+    }
+
 
     public void addCriminalConviction(CrimConviction crmC) {
         this.crimConvs.add(crmC);
@@ -28,12 +46,12 @@ public class CrimConvictionsColl {
     }
 
     public CrimConviction getCriminalConviction(Date date) {
+
         for (CrimConviction crim : this.crimConvs) {
             if (crim.getDate().equals(date)) {
                 return crim;
             }
         }
-        System.out.println("There's no crim convection with that date.\n");
         return null;
     }
 
@@ -41,7 +59,7 @@ public class CrimConvictionsColl {
     public String toString() {
         return "CrimConvictionsColl{" +
                 "crimConvs=" + crimConvs +
-                ", numConvs=" + numConvs +
+                ", numConvs=" + this.crimConvs.size() +
                 '}';
     }
 }
