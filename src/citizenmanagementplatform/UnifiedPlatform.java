@@ -2,12 +2,14 @@ package citizenmanagementplatform;
 
 import exceptions.*;
 import services.*;
+
 import publicadministration.*;
 import data.*;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.ConnectException;
+
 import java.util.Date;
 import java.util.HashMap;
 public class UnifiedPlatform {
