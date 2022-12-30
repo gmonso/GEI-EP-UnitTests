@@ -11,7 +11,7 @@ public class DigitalSignature {
 
     public DigitalSignature(byte[] code) throws NullArgumentException, WrongFormatException {
         if (code == null) throw new NullArgumentException("DigitalSignature is null");
-        if (!CorrectFormat(code)) throw new WrongFormatException("DigitalSignature is not in the correct format");
+        if (!correctFormat(code)) throw new WrongFormatException("DigitalSignature is not in the correct format");
         this.signature = code;
     }
 
@@ -19,7 +19,7 @@ public class DigitalSignature {
         return signature;
     }
 
-    public boolean CorrectFormat(byte[] code) {
+    public boolean correctFormat(byte[] code) {
         if (code.length < 3) return false;
         return code.length <= 20;
     }

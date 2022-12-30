@@ -11,8 +11,8 @@ public class PhoneNumber {
     private String phoneNumber;
 
     public PhoneNumber(String number) throws NullArgumentException, WrongFormatException {
-        if (number == null) throw new NullArgumentException("Card number is null");
-        if (!this.correctFormat(number)) throw new WrongFormatException("Card number is not in the correct format");
+        if (number == null) throw new NullArgumentException("Phone number is null");
+        if (!this.correctFormat(number)) throw new WrongFormatException("Phone number is not in the correct format");
         this.phoneNumber = number;
     }
 

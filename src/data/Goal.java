@@ -13,8 +13,8 @@ public class Goal {
 
     public Goal(String code, GoalType type) throws NullArgumentException, WrongFormatException, GoalTypeException {
         if (code == null) throw new NullArgumentException("Goal is null");
-        if (!CorrectFormat(code)) throw new WrongFormatException("Goal is not in the correct format");
-        if (!CorrectType(type)) throw new GoalTypeException("Goal is not of the correct type");
+        if (!correctFormat(code)) throw new WrongFormatException("Goal is not in the correct format");
+        if (!correctType(type)) throw new GoalTypeException("Goal is not of the correct type");
         this.goal = code;
         this.type = type;
     }
@@ -27,7 +27,7 @@ public class Goal {
         return type;
     }
 
-    public boolean CorrectFormat(String code) {
+    public boolean correctFormat(String code) {
         if (code.length() < 3) return false;
         if (code.length() > 20) return false;
         for (int i = 0; i < code.length(); i++) {
@@ -36,10 +36,11 @@ public class Goal {
         return true;
     }
 
-    public boolean CorrectType(GoalType type) {
+    public boolean correctType(GoalType type) {
         for (GoalType goalType : GoalType.values()) {
             if (goalType.equals(type)) return true;
         }
+
         return false;
     }
 
