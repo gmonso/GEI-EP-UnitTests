@@ -1,6 +1,7 @@
 package publicadministration;
 
-import data.*;
+import data.Nif;
+import data.PhoneNumber;
 
 import java.util.Date;
 
@@ -19,9 +20,11 @@ public class Citizen {
         this.mobileNumb = mobileNumb;
         this.nifDate = date;
     }
-    public Date getnifDate(){
+
+    public Date getnifDate() {
         return this.nifDate;
     }
+
     public Nif getNif() {
         return nif;
     }

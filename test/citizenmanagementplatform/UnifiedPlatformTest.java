@@ -24,15 +24,9 @@ public class UnifiedPlatformTest implements UnifiedPlatformTstg {
     public GPDdobule GPD = new GPDdobule();
     public JustMinDouble justMin = new JustMinDouble();
     public UnifiedPlatform up;
-
-    public Date d = new Date(2024,8,24);
-    public Citizen ctz = new Citizen(new Nif("99999998C"),"Name", "user address", new PhoneNumber("666666666"), d);
-    public CreditCard CC = new CreditCard(ctz.getNif(), new CardNumber("4444444444444444"), new Date(2029,5,12), new SmallCode("222"));
-
     public Date d = new Date(2024, 8, 24);
-    public Citizen ctz = new Citizen(new Nif("99999998C"), "Name", "user address", "666666666", d);
-    public CreditCard CC = new CreditCard(ctz.getNif(), "4444444444444444", new Date(2023, 5, 12), new SmallCode("222"));
-
+    public Citizen ctz = new Citizen(new Nif("99999998C"), "Name", "user address", new PhoneNumber("666666666"), d);
+    public CreditCard CC = new CreditCard(ctz.getNif(), new CardNumber("4444444444444444"), new Date(2029, 5, 12), new SmallCode("222"));
     public CrimConvictionsColl CColl;
     public CriminalRecordCertf crc;
     public DigitalSignature DS;

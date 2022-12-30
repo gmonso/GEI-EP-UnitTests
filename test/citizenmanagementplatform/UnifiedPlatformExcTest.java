@@ -10,6 +10,7 @@ import services.CertAuthDouble;
 import services.GPDdobule;
 import services.JustMinDouble;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.ConnectException;
 import java.util.Date;
@@ -22,15 +23,9 @@ public class UnifiedPlatformExcTest {
     public GPDdobule GPD = new GPDdobule();
     public JustMinDouble justMin = new JustMinDouble();
     public UnifiedPlatform up;
-
-    public Date d = new Date(2024,8,24);
-    public Citizen ctz = new Citizen(new Nif("99999998C"),"Name", "user address", new PhoneNumber("666666666"), d);
-    public CreditCard CC = new CreditCard(ctz.getNif(), new CardNumber("4444444444444444"), new Date(2029,5,12), new SmallCode("222"));
-
     public Date d = new Date(2024, 8, 24);
-    public Citizen ctz = new Citizen(new Nif("99999998C"), "Name", "user address", "666666666", d);
-    public CreditCard CC = new CreditCard(ctz.getNif(), "4444444444444444", new Date(2023, 5, 12), new SmallCode("222"));
-
+    public Citizen ctz = new Citizen(new Nif("99999998C"), "Name", "user address", new PhoneNumber("666666666"), d);
+    public CreditCard CC = new CreditCard(ctz.getNif(), new CardNumber("4444444444444444"), new Date(2029, 5, 12), new SmallCode("222"));
     public CrimConvictionsColl CColl;
     public CriminalRecordCertf crc;
     public DigitalSignature DS;
@@ -95,11 +90,7 @@ public class UnifiedPlatformExcTest {
     @Test
     public void AnyMobileException() throws NifNotRegisteredException, NullArgumentException, ConnectException, WrongFormatException, IncorrectValDateException {
         try {
-
-            ctz = new Citizen(new Nif("99995998C"),"Name", "user address", new PhoneNumber("666666666"), d);
-
-            ctz = new Citizen(new Nif("99995998C"), "Name", "user address", "666666666", d);
-
+            ctz = new Citizen(new Nif("99995998C"), "Name", "user address", new PhoneNumber("666666666"), d);
             cerAuth.addCitizen(ctz);
             up.enterNIFandPINobt(ctz.getNif(), d);
         } catch (AnyMobileRegisteredException ignored) {
@@ -119,17 +110,10 @@ public class UnifiedPlatformExcTest {
 
     @Test
     public void testIncorrectVerification() throws NullArgumentException, WrongFormatException, IncorrectFormException, ConnectException, NifNotRegisteredException {
-
-        try{
-            ctz = new Citizen(new Nif("99995998C"),"Name", "user address", new PhoneNumber("666666666"), d);
-            up.executeEnterForm(ctz, new Goal("Thesdfgoal", Goal.GoalType.STUDENT));
-        }catch (IncorrectVerificationException ignore) {
-
         try {
-            ctz = new Citizen(new Nif("99995998C"), "Name", "user address", "666666666", d);
-            up.executeEnterForm(ctz, new Goal("Rutinary32Check"));
+            ctz = new Citizen(new Nif("99995998C"), "Name", "user address", new PhoneNumber("666666666"), d);
+            up.executeEnterForm(ctz, new Goal("Thesdfgoal", Goal.GoalType.STUDENT));
         } catch (IncorrectVerificationException ignore) {
-
 
         } catch (GoalTypeException e) {
             throw new RuntimeException(e);

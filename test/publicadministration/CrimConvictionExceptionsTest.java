@@ -20,19 +20,11 @@ public class CrimConvictionExceptionsTest implements CrimConvictionInt {
     @Override
     @Test
     public void testGetter() throws NullArgumentException {
-
-        try{
-            assertEquals(crimC.getDate(),new Date(2022, 12,13) );
-            assertEquals(crimC.getOffense(), "The offense");
-            assertEquals(crimC.getSentence(), "20 years");
-        } catch (NullArgumentException ignored){
-
         try {
             assertEquals(crimC.getDate(), new Date(2022, 12, 13));
             assertEquals(crimC.getOffense(), "The offense");
             assertEquals(crimC.getSentence(), "20 years");
         } catch (NullArgumentException ignored) {
-
 
         }
 
