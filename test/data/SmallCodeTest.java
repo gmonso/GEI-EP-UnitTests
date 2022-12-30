@@ -11,14 +11,14 @@ public class SmallCodeTest implements SmallCodeTest_Int {
 
     @Override
     @Test
-    public void nullSmallCode(){
+    public void nullSmallCode() {
         Throwable exception = assertThrows(NullArgumentException.class, () -> new SmallCode(null));
         assertEquals("SmallCode is null", exception.getMessage());
     }
 
     @Override
     @Test
-    public void wrongSmallCode(){
+    public void wrongSmallCode() {
         Throwable exception = assertThrows(WrongFormatException.class, () -> new SmallCode("12853"));
         assertEquals("SmallCode is not in the correct format", exception.getMessage());
     }

@@ -23,17 +23,19 @@ public class CrimConvictionsColl {
     public Set<CrimConviction> getCrimConvs() {
         return this.crimConvs;
     }
-    public int getNumConvs(){
+
+    public int getNumConvs() {
         return this.crimConvs.size();
     }
+
     public void addCriminalConviction(CrimConviction crmC) throws NullArgumentException {
-        if(crmC == null) throw new NullArgumentException("Crim Conv Coll value Is null");
-        if(correctFOrm(crmC))
+        if (crmC == null) throw new NullArgumentException("Crim Conv Coll value Is null");
+        if (correctFOrm(crmC))
             this.crimConvs.add(crmC);
-        }
-        
-   private boolean correctFOrm(CrimConviction crmC) throws NullArgumentException {
-        if(crmC.getDate() == null || crmC.getOffense() == null || crmC.getSentence() == null){
+    }
+
+    private boolean correctFOrm(CrimConviction crmC) throws NullArgumentException {
+        if (crmC.getDate() == null || crmC.getOffense() == null || crmC.getSentence() == null) {
             throw new NullArgumentException("Element a CrimConv null");
         }
         return true;

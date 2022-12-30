@@ -2,6 +2,7 @@ package interfaces;
 
 import exceptions.NullArgumentException;
 import exceptions.WrongFormatException;
+
 public interface SmallCodeTest_Int {
 
     void nullSmallCode();
