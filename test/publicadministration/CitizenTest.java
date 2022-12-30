@@ -26,7 +26,7 @@ public class CitizenTest {
         name = "John Doe";
         address = "123 Main Street";
         mobileNumb = PhoneNumber.getInstance();
-        citizen = new Citizen(nif, name, address, mobileNumb, new Date(2,2,2));
+        citizen = new Citizen(nif, name, address, mobileNumb, new Date(2, 2, 2));
     }
 
     @Test
