@@ -24,7 +24,7 @@ public class PDFDocument {
         this.file = new File(this.path.getPath());
     }
 
-    public Date getCreatDate() {
+    public Date getCreateDate() {
         return creatDate;
     }
 

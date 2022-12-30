@@ -24,7 +24,7 @@ public class CreditCardTest {
         nif = new Nif("12345678Z");
         cardNumb = CardNumber.getInstance();
         expirDate = new Date();
-        svc = new SmallCode("123445");
+        svc = new SmallCode("123");
         creditCard = new CreditCard(nif, cardNumb, expirDate, svc);
     }
 
