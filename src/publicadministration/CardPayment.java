@@ -1,27 +1,29 @@
 package publicadministration;
 
 import data.Nif;
+import data.Reference;
+import exceptions.NullArgumentException;
+import exceptions.WrongFormatException;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 public class CardPayment {
     // The information associated to the payment realized via internet
-    private final String reference; // The code of the operation
+    private final Reference reference; // The code of the operation
     private final Nif nif; // The nif of the user
     private final Date date; // The date of the operation
-    private final BigDecimal import_; // The import of the payment
+    private final BigDecimal imp; // The import of the payment
 
 
-    public CardPayment(String reference, Nif nif, Date date, BigDecimal import_) {
-        this.reference = reference;
+    public CardPayment(Nif nif, BigDecimal imp) throws NullArgumentException, WrongFormatException {
+        this.reference = Reference.getInstance(); // "1234567890";
         this.nif = nif;
         this.date = date;
-        this.import_ = import_;
+        this.imp = imp;
     }
 
-
-    public String getReference() {
+    public Reference getReference() {
         return reference;
     }
 
@@ -34,17 +36,17 @@ public class CardPayment {
     }
 
     public BigDecimal getImport() {
-        return import_;
+        return imp;
     }
 
 
     @Override
     public String toString() {
         return "CardPayment{" +
-                "reference='" + reference + '\'' +
+                "reference=" + reference +
                 ", nif=" + nif +
                 ", date=" + date +
-                ", import_=" + import_ +
+                ", imp=" + imp +
                 '}';
     }
 }

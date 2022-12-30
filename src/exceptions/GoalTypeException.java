@@ -1,7 +1,7 @@
 package exceptions;
 
 public class GoalTypeException extends Exception {
-    public GoalTypeException() {
-        super();
+    public GoalTypeException(String message) {
+        super(message);
     }
 }

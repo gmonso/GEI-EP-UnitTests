@@ -1,31 +1,62 @@
 package publicadministration;
 
-import exceptions.NullArgumentException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import interfaces.*;
-import java.util.Calendar;
+
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CrimConvictionTest implements CrimConvictionInt {
-    CrimConviction crimC;
-    Date date;
-    String offende;
-    String sentc;
+public class CrimConvictionTest {
+    private Date commitDate;
+    private String offense;
+    private String sentence;
+    private CrimConviction crimConviction;
+
     @BeforeEach
-    public void setup(){
-        date = new Date(2022, 12,13);
-        offende = "The offense";
-        sentc = "20 years";
-        crimC = new CrimConviction(date, offende, sentc);
+    void init() {
+        commitDate = new Date();
+        offense = "offense";
+        sentence = "sentence";
+        crimConviction = new CrimConviction(commitDate, offense, sentence);
     }
-    @Override
+
     @Test
-    public void testGetter() throws NullArgumentException {
-        assertEquals(crimC.getDate(),new Date(2022, 12,13) );
-        assertEquals(crimC.getOffense(), "The offense");
-        assertEquals(crimC.getSentence(), "20 years");
+    void testGetDate() {
+        assertEquals(commitDate, crimConviction.getDate());
     }
+
+    @Test
+    void testGetOffense() {
+        assertEquals(offense, crimConviction.getOffense());
+    }
+
+    @Test
+    void testGetSentence() {
+        assertEquals(sentence, crimConviction.getSentence());
+    }
+
+    @Test
+    public void testConstructor() {
+        assertEquals(commitDate, crimConviction.getDate());
+        assertEquals(offense, crimConviction.getOffense());
+        assertEquals(sentence, crimConviction.getSentence());
+    }
+
+    // test to string is string
+    @Test
+    void testToString() {
+        assertNotNull(crimConviction.toString());
+    }
+
+    // test null constructor
+    @Test
+    void testNullConstructor() {
+        try {
+            CrimConviction c = new CrimConviction(null, null, null);
+        } catch (Exception ignored) {
+            fail();
+        }
+    }
+
 }

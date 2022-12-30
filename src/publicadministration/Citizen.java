@@ -1,27 +1,22 @@
 package publicadministration;
 
-import data.*;
-
-import java.util.Date;
+import data.Nif;
+import data.PhoneNumber;
 
 public class Citizen {
     // Represents all the information required for a citizen
     private final Nif nif;
     private final String name;
     private final String address;
-    private final String mobileNumb;
-    private Date nifDate;
+    private final PhoneNumber mobileNumb;
 
-    public Citizen(Nif nif, String name, String address, String mobileNumb, Date date) {
+    public Citizen(Nif nif, String name, String address, PhoneNumber mobileNumb) {
         this.nif = nif;
         this.name = name;
         this.address = address;
         this.mobileNumb = mobileNumb;
-        this.nifDate = date;
     }
-    public Date getnifDate(){
-        return this.nifDate;
-    }
+
     public Nif getNif() {
         return nif;
     }
@@ -34,7 +29,7 @@ public class Citizen {
         return address;
     }
 
-    public String getMobileNumb() {
+    public PhoneNumber getMobileNumb() {
         return mobileNumb;
     }
 

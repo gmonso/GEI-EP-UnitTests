@@ -10,13 +10,16 @@ public class SmallCode {
 
     public SmallCode(String code) throws NullArgumentException, WrongFormatException {
         if (code == null) throw new NullArgumentException("SmallCode is null");
-        if (!CorrectFormat(code)) throw new WrongFormatException("SmallCode is not in the correct format");
+        if (!correctFormat(code)) throw new WrongFormatException("SmallCode is not in the correct format");
         this.code = code;
     }
 
-    public boolean CorrectFormat(String code) {
-        if (code.length() == 3) return true;
-        return false;
+    public boolean correctFormat(String code) {
+        return code.length() == 3;
+    }
+
+    public String getCode() {
+        return code;
     }
 
     @Override

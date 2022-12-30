@@ -1,5 +1,6 @@
 package publicadministration;
 
+import data.CardNumber;
 import data.Nif;
 import data.SmallCode;
 
@@ -8,12 +9,12 @@ import java.util.Date;
 public class CreditCard {
     // The payment information for using the card via internet
     private final Nif nif; // The nif of the user
-    private final String cardNumb; // The number of the credit card
+    private final CardNumber cardNumb; // The number of the credit card
     private final Date expirDate; // The expiration date for the credit card
     private final SmallCode svc;     // The Safe Verification Code
 
 
-    public CreditCard(Nif nif, String cardNumb, Date expirDate, SmallCode svc) {
+    public CreditCard(Nif nif, CardNumber cardNumb, Date expirDate, SmallCode svc) {
         this.nif = nif;
         this.cardNumb = cardNumb;
         this.expirDate = expirDate;
@@ -24,7 +25,7 @@ public class CreditCard {
         return nif;
     }
 
-    public String getCardNumb() {
+    public CardNumber getCardNumb() {
         return cardNumb;
     }
 
@@ -35,12 +36,7 @@ public class CreditCard {
     public SmallCode getSvc() {
         return svc;
     }
-    public boolean CorrectForm(){
-        if(this.nif.getNif().length() <= 0 || this.cardNumb.length() <= 0 || this.expirDate == null || this.svc == null){
-            return false;
-        }
-        return true;
-    }
+
     @Override
     public String toString() {
         return "CreditCard{" +

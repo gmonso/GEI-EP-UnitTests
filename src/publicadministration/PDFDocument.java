@@ -1,7 +1,6 @@
 package publicadministration;
 
 import data.DocPath;
-import exceptions.BadPathException;
 import exceptions.NullArgumentException;
 import exceptions.WrongFormatException;
 
@@ -10,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Date;
 
@@ -19,13 +19,24 @@ public class PDFDocument {
     private final File file;
     // Initializes attributes and emulates the document download at a default path
 
-    public PDFDocument() throws NullArgumentException, WrongFormatException {
+    public PDFDocument() throws NullArgumentException, WrongFormatException, IOException {
         this.creatDate = new Date();
-        this.path = new DocPath("C:\\Users\\Public");
+
+        String currentPath = System.getProperty("user.dir");
+        this.path = new DocPath(currentPath + "/new_file.pdf");
+
+        Path filePath = Path.of(this.path.getPath());
+        Path new_path;
+        if (Files.exists(filePath)) {
+            Files.delete(filePath);
+        }
+        new_path = Files.createFile(filePath);
         this.file = new File(this.path.getPath());
+
     }
 
-    public Date getCreatDate() {
+
+    public Date getCreateDate() {
         return creatDate;
     }
 
@@ -54,7 +65,6 @@ public class PDFDocument {
             throw new IOException("The destination path is null");
         }
         try {
-            // revisar
             Files.move(Path.of(this.path.getPath()), Path.of(destPath.getPath()), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             throw new IOException("The document could not be moved");
@@ -63,8 +73,8 @@ public class PDFDocument {
     }
 
     // Opens the document at the path indicated
-    public void openDoc(DocPath path) throws IOException, BadPathException {
-        if (path == null) throw new BadPathException();
+    public void openDoc(DocPath path) throws IOException {
+        if (path == null) throw new IOException("The path is null");
         try {
             File file = new File(path.getPath());
             Desktop.getDesktop().open(file);
