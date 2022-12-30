@@ -28,30 +28,30 @@ public class DocPathTest implements DocPathTest_Int {
     @Override
     @Test
     public void goodDocPath() throws NullArgumentException, WrongFormatException {
-        DocPath docPath = new DocPath("C:\\Users\\User\\Desktop\\test.txt");
-        assertEquals("C:\\Users\\User\\Desktop\\test.txt", docPath.getPath());
+        DocPath docPath = new DocPath("C:\\Users\\User\\Desktop\\test.pdf");
+        assertEquals("C:\\Users\\User\\Desktop\\test.pdf", docPath.getPath());
     }
 
     @Override
     @Test
     public void docPathEquals() throws NullArgumentException, WrongFormatException {
-        DocPath docPath = new DocPath("C:\\Users\\User\\Desktop\\test.txt");
+        DocPath docPath = new DocPath("C:\\Users\\User\\Desktop\\test.pdf");
         assertTrue(docPath.equals(docPath));
     }
 
     @Override
     @Test
     public void docPathNotEquals() throws NullArgumentException, WrongFormatException {
-        DocPath docPath1 = new DocPath("C:\\Users\\User\\Desktop\\test.txt");
-        DocPath docPath2 = new DocPath("C:\\Users\\User\\Desktop\\test2.txt");
+        DocPath docPath1 = new DocPath("C:\\Users\\User\\Desktop\\test.pdf");
+        DocPath docPath2 = new DocPath("C:\\Users\\User\\Desktop\\test2.pdf");
         assertFalse(docPath1.equals(docPath2));
     }
 
     @Override
     @Test
     public void docPathEquals2() throws NullArgumentException, WrongFormatException {
-        DocPath docPath1 = new DocPath("C:\\Users\\User\\Desktop\\test.txt");
-        DocPath docPath2 = new DocPath("C:\\Users\\User\\Desktop\\test.txt");
+        DocPath docPath1 = new DocPath("C:\\Users\\User\\Desktop\\test.pdf");
+        DocPath docPath2 = new DocPath("C:\\Users\\User\\Desktop\\test.pdf");
         assertTrue(docPath1.equals(docPath2));
     }
 }

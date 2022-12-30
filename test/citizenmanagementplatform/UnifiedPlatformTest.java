@@ -28,8 +28,8 @@ public class UnifiedPlatformTest implements UnifiedPlatformTstg {
     public JustMinDouble justMin = new JustMinDouble();
     public UnifiedPlatform up;
     public Date d = new Date(2024,8,24);
-    public Citizen ctz = new Citizen(new Nif("99999998C"),"Name", "user address", "666666666", d);
-    public CreditCard CC = new CreditCard(ctz.getNif(), "4444444444444444", new Date(2023,5,12), new SmallCode("222"));
+    public Citizen ctz = new Citizen(new Nif("99999998C"),"Name", "user address", new PhoneNumber("666666666"), d);
+    public CreditCard CC = new CreditCard(ctz.getNif(), new CardNumber("4444444444444444"), new Date(2029,5,12), new SmallCode("222"));
     public CrimConvictionsColl CColl;
     public CriminalRecordCertf crc;
     public DigitalSignature DS;
@@ -37,11 +37,11 @@ public class UnifiedPlatformTest implements UnifiedPlatformTstg {
     }
 
     @BeforeEach
-    void setup() throws NullArgumentException, WrongFormatException, GoalTypeException {
+    void setup() throws NullArgumentException, WrongFormatException, GoalTypeException, IOException {
         DS = new DigitalSignature(new byte[5]);
         CColl = new CrimConvictionsColl();
         CColl.addCriminalConviction(new CrimConviction(new Date(2002, 2, 23), "offense", "20 Years"));
-        crc = new CriminalRecordCertf(ctz.getNif(), ctz.getName(), new Goal("The22goal"), DS, CColl);
+        crc = new CriminalRecordCertf(ctz.getNif(), ctz.getName(), new Goal("Thesdfgoal", Goal.GoalType.STUDENT), DS, CColl);
         setupCerAuth(cerAuth);
         setupCAS(CAS);
         setupGPD(GPD);
@@ -54,9 +54,9 @@ public class UnifiedPlatformTest implements UnifiedPlatformTstg {
         up.setCitizen(ctz);
     }
 
-    private void setupCerAuth(CertAuthDouble cerAuth) {
+    private void setupCerAuth(CertAuthDouble cerAuth) throws NullArgumentException, WrongFormatException {
         cerAuth.addCitizen(ctz);
-        cerAuth.addPhoneNumer(new PhoneNumber(ctz.getMobileNumb()), ctz.getNif());
+        cerAuth.addPhoneNumer(new PhoneNumber(ctz.getMobileNumb().getPhoneNumber()), ctz.getNif());
     }
 
     private void setupCAS(CASdouble cas) {
@@ -90,10 +90,10 @@ public class UnifiedPlatformTest implements UnifiedPlatformTstg {
 
     @Override
     @Test
-    public void testEnterForm() throws NullArgumentException, WrongFormatException, IncorrectVerificationException, IncorrectFormException, ConnectException, NifNotRegisteredException {
-        up.executeEnterForm(ctz, new Goal("Rutinary32Check"));
+    public void testEnterForm() throws NullArgumentException, WrongFormatException, IncorrectVerificationException, IncorrectFormException, ConnectException, NifNotRegisteredException, GoalTypeException {
+        up.executeEnterForm(ctz, new Goal("Thesdfgoal", Goal.GoalType.STUDENT));
         String goal = this.GPD.getGoal(ctz.getNif().getNif());
-        assertEquals(goal, "Rutinary32Check");
+        assertEquals(goal, "Thesdfgoal");
     }
 
     @Override
@@ -105,7 +105,7 @@ public class UnifiedPlatformTest implements UnifiedPlatformTstg {
 
     @Override
     @Test
-    public void testObtainCertificate() throws DigitalSignatureException, IOException, BadPathException, NullArgumentException, WrongFormatException {
+    public void testObtainCertificate() throws DigitalSignatureException, IOException, BadPathException, NullArgumentException, WrongFormatException, GoalTypeException {
         up.setGoal();
         up.executeObtainCer();
         assertFalse(up.registered);

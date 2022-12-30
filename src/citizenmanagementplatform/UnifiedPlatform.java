@@ -80,11 +80,12 @@ public class UnifiedPlatform {
     private void realizePayment () {
         System.out.println("User is ready for card payment.");
     }
-    public void setGoal() throws NullArgumentException, WrongFormatException {
-        this.g = new Goal("The22goal");
+    public void setGoal() throws NullArgumentException, WrongFormatException, GoalTypeException {
+        this.g = new Goal("Thesdfgoal", Goal.GoalType.STUDENT);
     }
+    Date y = new Date(2024,2,2);
     private void enterCardData (CreditCard cardD) throws NotValidPaymentDataException, InsufficientBalanceException, ConnectException, IncorrectFormException {
-        boolean x = this.CAS.askForApproval("Tranferece", cardD, new Date(2,2,2), new BigDecimal(20));
+        boolean x = this.CAS.askForApproval("Tranferece", cardD, y, new BigDecimal(20));
         if(x){
             registerPayment();
             System.out.println("Card data introduced and verified successifully");
