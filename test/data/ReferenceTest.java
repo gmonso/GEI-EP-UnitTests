@@ -18,6 +18,15 @@ public class ReferenceTest implements ReferenceTest_Int {
 
     @Override
     @Test
+    public void setterReference() throws NullArgumentException, WrongFormatException {
+        Reference ref = new Reference("12345678901234567890");
+        ref.setReference("48965478932415234215");
+        assertEquals("48965478932415234215", ref.getReference());
+        assertNotEquals("12345678901234567890", ref.getReference());
+    }
+
+    @Override
+    @Test
     public void nullReference() {
         Throwable exception = assertThrows(NullArgumentException.class, () -> new Reference(null));
         assertEquals("Reference is null", exception.getMessage());

@@ -7,6 +7,8 @@ public interface CardNumberTest_Int {
 
     void correctCardNumber() throws NullArgumentException, WrongFormatException;
 
+    void setterCardNumber() throws NullArgumentException, WrongFormatException;
+
     void nullCardNumber();
 
     void badFormatCardNumber();

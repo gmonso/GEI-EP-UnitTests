@@ -19,6 +19,15 @@ public class CardNumberTest implements CardNumberTest_Int {
 
     @Override
     @Test
+    public void setterCardNumber() throws NullArgumentException, WrongFormatException {
+        CardNumber cardNumber = new CardNumber("1234567890123456");
+        cardNumber.setCardNumber("4764789426575967");
+        assertEquals("4764789426575967", cardNumber.getCardNumber());
+        assertNotEquals("123467890123456", cardNumber.getCardNumber());
+    }
+
+    @Override
+    @Test
     public void nullCardNumber() {
         Throwable exception = assertThrows(NullArgumentException.class, () -> new CardNumber(null));
         assertEquals("Card number is null", exception.getMessage());
